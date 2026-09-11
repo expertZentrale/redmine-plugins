@@ -1,0 +1,93 @@
+name: Build and deploy site
+
+on:
+  push:
+    branches: [main]
+  # Keeps the version numbers honest without anyone remembering to rebuild.
+  schedule:
+    - cron: '17 4 * * 1'
+  workflow_dispatch:
+  # Each plugin's own release.yml can POST a repository_dispatch here so a new
+  # tag shows up on the site within a minute instead of by Monday.
+  repository_dispatch:
+    types: [plugin-released]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never cancel a running deploy; queue behind it.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Refresh release data from the GitHub API
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ruby script/fetch-releases.rb
+
+      - uses: actions/configure-pages@v5
+
+      # A custom domain serves the site from the root; project Pages serve it
+      # from /<repo>. Deriving this from the CNAME file rather than hard-coding
+      # it means adding the domain later is one new file and no link edits —
+      # and it cannot be forgotten, because the build reads it every time.
+      - name: Work out the base path
+        id: base
+        run: |
+          if [ -f CNAME ]; then
+            echo "Custom domain in CNAME: $(cat CNAME) — building for the root"
+            echo "baseurl=" >> "$GITHUB_OUTPUT"
+          else
+            echo "No CNAME — building for project Pages at /${GITHUB_REPOSITORY#*/}"
+            echo "baseurl=/${GITHUB_REPOSITORY#*/}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --baseurl '${{ steps.base.outputs.baseurl }}'
+
+      # The failure mode a static site hides best is a screenshot that silently
+      # 404s after a rename. Internal links and images are checked on every
+      # build; external links only on the weekly run, so a rate-limited or
+      # briefly-down third party cannot block a content deploy.
+      - name: Check internal links and images
+        run: |
+          bundle exec htmlproofer _site \
+            --disable-external \
+            --checks Links,Images,Scripts \
+            --swap-urls '^${{ steps.base.outputs.baseurl }}/:/'
+
+      - name: Check external links
+        if: github.event_name == 'schedule'
+        continue-on-error: true
+        run: |
+          bundle exec htmlproofer _site \
+            --checks Links \
+            --ignore-status-codes '429,999' \
+            --only-4xx
+
+      - uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

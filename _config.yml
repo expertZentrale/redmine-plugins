@@ -1,0 +1,52 @@
+title: Redmine plugins by expert
+tagline: Helpdesk, agile boards, metrics and attachment previews for Redmine
+description: >-
+  Four open-source Redmine plugins from expert: an email helpdesk with SLA,
+  agile boards built on Redmine's own query system, Prometheus metrics, and
+  attachment previews. GPL-2.0, tested on Redmine 5.1 to 7.0.
+
+# Both are OVERRIDDEN AT BUILD TIME by .github/workflows/pages.yml, which
+# derives them from whether a CNAME file exists:
+#
+#   CNAME present  -> custom domain, site lives at the root, baseurl ''
+#   CNAME absent   -> project Pages, site lives at /<repo>, baseurl '/<repo>'
+#
+# That is why adding the custom domain later is one file and no link edits.
+# The values here are the ones a bare `jekyll build` uses.
+url: ''
+baseurl: ''
+
+github_org: expertZentrale
+default_lang: en
+
+permalink: pretty
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+
+sass:
+  style: compressed
+  sass_dir: _sass
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - script/
+  - tools/
+  - vendor/
+  - node_modules/
+
+defaults:
+  - scope: {path: ''}
+    values:
+      lang: en
+  - scope: {path: 'de'}
+    values:
+      lang: de

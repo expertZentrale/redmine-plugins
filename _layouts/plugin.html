@@ -1,0 +1,92 @@
+---
+layout: default
+---
+{%- assign t = site.data.i18n[page.lang] -%}
+{%- assign p = site.data.plugins | where: 'id', page.plugin | first -%}
+{%- assign rel = site.data.releases[page.plugin] -%}
+
+<section class="phero">
+  <div class="shell">
+    <div class="phero__top">
+      <img src="{{ '/assets/img/logo/' | append: p.id | append: '.svg' | relative_url }}" alt="" width="62" height="62">
+      <h1>{{ p.name }}</h1>
+    </div>
+    <p class="phero__promise">{{ page.promise | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+    <div class="chip-row">
+      {%- if rel.tag %}<span class="chip chip--brand">{{ rel.tag }}</span>{% endif %}
+      <span class="chip">Redmine {{ p.redmine | first }}–{{ p.redmine | last }}</span>
+      <span class="chip">{{ p.license }}</span>
+      {%- if p.ci %}<span class="chip">{{ t.tested_ci }}</span>{% else %}<span class="chip chip--muted">{{ t.tested_manual }}</span>{% endif %}
+    </div>
+    <div class="btn-row">
+      {%- if rel.zip_url %}
+      <a class="btn btn--primary" href="{{ rel.zip_url }}">{{ t.cta_download }} {{ rel.tag }}</a>
+      {%- else %}
+      <a class="btn btn--primary" href="https://github.com/{{ p.repo }}">{{ t.cta_source }}</a>
+      {%- endif %}
+      <a class="btn btn--ghost" href="https://github.com/{{ p.repo }}#readme">{{ t.cta_docs }}</a>
+      <a class="btn btn--ghost" href="https://github.com/{{ p.repo }}/issues">{{ t.cta_issues }}</a>
+    </div>
+  </div>
+</section>
+
+{%- if page.intro %}
+<section class="section section--tight">
+  <div class="shell">
+    <div class="section__lead">{{ page.intro | markdownify }}</div>
+  </div>
+</section>
+{%- endif %}
+
+{%- if page.features %}
+<section class="section section--alt">
+  <div class="shell shell--wide">
+    <h2>{{ t.features_heading }}</h2>
+    {%- for f in page.features %}
+    {%- comment -%}
+      A feature only gets the two-column treatment once its screenshot actually
+      exists on disk (metrics and lightbox are captured in a later pass). Until
+      then it renders full width rather than leaving a broken image behind.
+    {%- endcomment -%}
+    {%- assign has_shot = false -%}
+    {%- if f.shot and site.data.shots[page.plugin][page.lang][f.shot] -%}
+      {%- assign has_shot = true -%}
+    {%- endif -%}
+    <div class="feature{% if has_shot %}{% cycle 'flip': '', ' feature--flip' %}{% else %} feature--solo{% endif %}">
+      <div class="feature__body">
+        {%- if f.kicker %}<p class="feature__kicker">{{ f.kicker }}</p>{% endif %}
+        <h3>{{ f.title }}</h3>
+        {{ f.body | markdownify }}
+      </div>
+      {%- if has_shot %}
+      <div class="feature__media">
+        {%- include shot.html plugin=page.plugin file=f.shot caption=f.caption -%}
+      </div>
+      {%- endif %}
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}
+
+{%- if page.why %}
+<section class="section">
+  <div class="shell">
+    <h2>{{ t.why_heading }}</h2>
+    <ul class="why">
+      {%- for w in page.why %}
+      <li>{{ w | markdownify | remove: '<p>' | remove: '</p>' }}</li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+{%- endif %}
+
+<section class="section section--alt">
+  <div class="shell">
+    <h2>{{ t.compat_heading }}</h2>
+    {% include facts.html plugin=p t=t %}
+    {{ content }}
+    {% include install.html plugin=p t=t step1=page.install.step1 step2=page.install.step2 step3=page.install.step3 step4=page.install.step4 note=page.install.note %}
+  </div>
+</section>

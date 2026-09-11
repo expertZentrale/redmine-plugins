@@ -1,0 +1,44 @@
+{%- assign plugins = site.data.plugins | sort: 'order' -%}
+<footer class="colophon">
+  <div class="shell shell--wide">
+    <div class="colophon__grid">
+      <div>
+        <p class="colophon__head">{{ include.t.nav_plugins }}</p>
+        <ul class="colophon__list">
+          {%- for p in plugins %}
+          <li><a href="{{ include.nav.plugins[p.id] | relative_url }}">{{ p.name }}</a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+      <div>
+        <p class="colophon__head">{{ include.t.cta_docs }}</p>
+        <ul class="colophon__list">
+          <li><a href="{{ include.nav.compatibility | relative_url }}">{{ include.t.nav_compatibility }}</a></li>
+          {%- for p in plugins %}
+          <li><a href="https://github.com/{{ p.repo }}#readme">{{ p.name | remove: 'expert ' }} README</a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+      <div>
+        <p class="colophon__head">{{ include.t.nav_github }}</p>
+        <ul class="colophon__list">
+          {%- for p in plugins %}
+          <li><a href="https://github.com/{{ p.repo }}">{{ p.repo | split: '/' | last }}</a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+      <div>
+        <p class="colophon__head">{{ include.t.footer_imprint }}</p>
+        <ul class="colophon__list">
+          <li><a href="{{ include.nav.imprint | relative_url }}">{{ include.t.footer_imprint }}</a></li>
+          <li><a href="{{ include.nav.privacy | relative_url }}">{{ include.t.footer_privacy }}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="colophon__base">
+      <p>{{ include.t.footer_license }}</p>
+      <p>{{ include.t.footer_note }}</p>
+    </div>
+  </div>
+</footer>

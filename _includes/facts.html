@@ -1,0 +1,39 @@
+{%- assign p = include.plugin -%}
+{%- assign t = include.t -%}
+{%- assign rel = site.data.releases[p.id] -%}
+<dl class="facts">
+  <div class="facts__cell">
+    <dt>{{ t.latest_release }}</dt>
+    <dd>
+      {%- if rel.tag -%}
+        <a href="{{ rel.html_url }}">{{ rel.tag }}</a>
+        <span class="chip chip--muted" style="margin-left:.35rem">{{ rel.published_at }}</span>
+      {%- else -%}
+        <span class="chip chip--muted">{{ t.no_release }}</span>
+      {%- endif -%}
+    </dd>
+  </div>
+  <div class="facts__cell">
+    <dt>{{ t.redmine_versions }}</dt>
+    <dd>{{ p.redmine | join: ' · ' }}</dd>
+  </div>
+  <div class="facts__cell">
+    <dt>{{ t.database }}</dt>
+    <dd>{{ p.databases | join: ', ' }}</dd>
+  </div>
+  <div class="facts__cell">
+    <dt>{{ t.gems }}</dt>
+    <dd>
+      {%- if p.gems == empty -%}{{ t.gems_none }}
+      {%- else -%}{{ p.gems | join: ', ' }}{%- endif -%}
+    </dd>
+  </div>
+  <div class="facts__cell">
+    <dt>{{ t.migrations }}</dt>
+    <dd>{% if p.migrations == 0 %}{{ t.migrations_none }}{% else %}{{ p.migrations }}{% endif %}</dd>
+  </div>
+  <div class="facts__cell">
+    <dt>{{ t.license }}</dt>
+    <dd>{{ p.license }}</dd>
+  </div>
+</dl>

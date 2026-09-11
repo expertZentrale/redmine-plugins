@@ -1,0 +1,67 @@
+---
+layout: default
+---
+{%- assign t = site.data.i18n[page.lang] -%}
+{%- assign nav = site.data.nav[page.lang] -%}
+{%- assign plugins = site.data.plugins | sort: 'order' -%}
+
+<section class="hero">
+  <span class="hero__mark">{% include star.svg %}</span>
+  <div class="shell">
+    <p class="hero__eyebrow">{{ page.eyebrow }}</p>
+    <h1>{{ page.headline }}</h1>
+    <p class="hero__sub">{{ page.subhead }}</p>
+    <div class="btn-row">
+      <a class="btn btn--primary" href="#plugins">{{ t.all_plugins }}</a>
+      <a class="btn btn--ghost" href="https://github.com/{{ site.github_org }}">{{ t.nav_github }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="plugins">
+  <div class="shell shell--wide">
+    <div class="section__lead">{{ page.lead | markdownify }}</div>
+    <ul class="card-grid">
+      {%- for p in plugins %}
+      {%- assign rel = site.data.releases[p.id] %}
+      {%- assign copy = page.cards[p.id] %}
+      <li>
+        <div class="pcard">
+          <img src="{{ '/assets/img/logo/' | append: p.id | append: '.svg' | relative_url }}" alt="" width="42" height="42">
+          <h3><a class="pcard__link" href="{{ nav.plugins[p.id] | relative_url }}">{{ p.name }}</a></h3>
+          <p>{{ copy }}</p>
+          <div class="pcard__foot">
+            <span>{% if rel.tag %}{{ rel.tag }}{% else %}{{ t.no_release }}{% endif %}</span>
+            <span class="pcard__go" aria-hidden="true">{{ t.cta_learn_more }} &rarr;</span>
+          </div>
+        </div>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="shell">
+    {{ content }}
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <h2>{{ t.latest_release }}</h2>
+    <ul class="releases">
+      {%- for p in plugins %}
+      {%- assign rel = site.data.releases[p.id] %}
+      <li>
+        <a href="{{ rel.html_url }}">{{ p.name | remove: 'expert ' }} {% if rel.tag %}{{ rel.tag }}{% endif %}</a>
+        {%- if rel.published_at %}<time datetime="{{ rel.published_at }}">{{ rel.published_at }}</time>
+        {%- else %}<time>{{ t.no_release }}</time>{% endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+    <p style="margin-top:1.5rem">
+      <a class="btn btn--ghost" href="{{ nav.compatibility | relative_url }}">{{ t.nav_compatibility }} &rarr;</a>
+    </p>
+  </div>
+</section>

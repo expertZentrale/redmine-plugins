@@ -1,0 +1,79 @@
+{%- assign t = include.t -%}
+{%- assign plugins = site.data.plugins | sort: 'order' -%}
+{%- assign versions = site.data.plugins | first | map: 'redmine' | first -%}
+
+<h2 id="redmine">{{ include.h_versions }}</h2>
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>Plugin</th>
+        {%- for v in versions %}<th>Redmine {{ v }}</th>{% endfor %}
+        <th>{{ include.h_testing }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for p in plugins %}
+      <tr>
+        <td><a href="{{ include.nav.plugins[p.id] | relative_url }}">{{ p.name }}</a></td>
+        {%- for v in versions %}
+        {%- if p.redmine contains v %}<td class="yes">&check;</td>{% else %}<td class="no">&ndash;</td>{% endif %}
+        {%- endfor %}
+        <td>{% if p.ci %}{{ t.tested_ci }}{% else %}{{ t.tested_manual }}{% endif %}</td>
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+</div>
+<p class="table-note">{{ include.note_versions }}</p>
+
+<h2 id="ruby">{{ include.h_ruby }}</h2>
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr><th>Redmine</th><th>Ruby</th><th>{{ include.h_ci_db }}</th></tr>
+    </thead>
+    <tbody>
+      {%- assign ruby_map = site.data.plugins | first | map: 'ruby' | first %}
+      {%- for v in versions %}
+      <tr><td>{{ v }}</td><td>{{ ruby_map[v] }}</td><td>MariaDB 11.4</td></tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+</div>
+
+<h2 id="requirements">{{ include.h_requirements }}</h2>
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>Plugin</th>
+        <th>{{ t.database }}</th>
+        <th>{{ t.gems }}</th>
+        <th>{{ t.migrations }}</th>
+        <th>{{ t.bundled }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for p in plugins %}
+      <tr>
+        <td>{{ p.name }}</td>
+        <td>
+          {{ p.databases | join: ', ' }}
+          {%- if p.databases_note %} <span class="chip chip--muted">{{ include.label_db_note }}</span>{% endif %}
+        </td>
+        <td>
+          {%- if p.gems == empty %}{{ t.gems_none }}{% else %}<code>{{ p.gems | join: '</code>, <code>' }}</code>{% endif %}
+          {%- if p.gems_optional != empty %}<br><span class="chip chip--muted">{{ t.gems_optional }}</span> <code>{{ p.gems_optional | join: '</code>, <code>' }}</code>{% endif %}
+        </td>
+        <td>{% if p.migrations == 0 %}{{ t.migrations_none }}{% else %}{{ p.migrations }}{% endif %}</td>
+        <td>
+          {%- if p.vendored == empty %}{{ t.bundled_none }}
+          {%- else %}{% for v in p.vendored %}{{ v.name }} {{ v.version }} <span class="chip chip--muted">{{ v.license }}</span>{% unless forloop.last %}<br>{% endunless %}{% endfor %}
+          {%- endif %}
+        </td>
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+</div>

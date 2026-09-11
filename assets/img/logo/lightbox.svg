@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 8 60 60" width="60" height="60">
+  <!-- expert Lightbox - square mark, no wordmark (website) -->
+  <circle cx="50" cy="38" r="26.5" fill="none" stroke="#F04C00" stroke-width="2.6"/>
+
+  <!-- red segmented arc (family element) -->
+  <path d="M 32.5 25.5 A 21.5 21.5 0 0 1 67.5 25.5"
+        fill="none" stroke="#CD291F" stroke-width="5.4"
+        stroke-dasharray="6.2 2.55"/>
+
+  <!-- framed picture -->
+  <g>
+    <rect x="29" y="29" width="42" height="27" rx="3.4" fill="#F04C00"/>
+    <rect x="33.2" y="33.2" width="33.6" height="18.6" rx="2.2" fill="#ffffff"/>
+    <circle cx="40.4" cy="39.0" r="2.7" fill="#CD291F"/>
+    <path d="M 33.2 51.8 L 42.6 42.8 L 49.4 49.6 L 55.4 43.6 L 66.8 51.8 Z" fill="#F58C66"/>
+    <path d="M 49.4 49.6 L 55.4 43.6 L 66.8 51.8 Z" fill="#CD291F"/>
+    <!-- expand bracket: must NOT be white, it sits on the white inner rect -->
+    <g stroke="#CD291F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M 61.6 36.4 L 64.8 36.4 L 64.8 39.6"/>
+    </g>
+  </g>
+</svg>

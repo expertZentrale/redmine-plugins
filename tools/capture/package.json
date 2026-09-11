@@ -1,0 +1,16 @@
+{
+  "name": "expert-redmine-plugins-capture",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Screenshot capture and SVG rasterisation for the expert Redmine plugins site.",
+  "type": "module",
+  "scripts": {
+    "verify": "node verify-live.mjs",
+    "preview": "node preview.mjs",
+    "rasterise": "node rasterise.mjs",
+    "overflow": "node overflow-check.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}

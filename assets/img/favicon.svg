@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- The expert star, solid. The striped version collapses into unreadable
+       bars at 16px, which is the only size a favicon is ever seen at. -->
+  <g fill="#F04C00">
+    <polygon points="50,6 89,72 11,72"/>
+    <polygon points="50,94 11,28 89,28"/>
+  </g>
+</svg>

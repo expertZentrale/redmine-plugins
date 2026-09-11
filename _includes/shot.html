@@ -1,0 +1,26 @@
+{%- comment -%}
+  A screenshot. `plugin`, `file` and `caption` are required; `lang` defaults to
+  the page language, because the German pages show the German screenshots.
+
+  Width/height come from _data/shots.yml (real measured pixels), not from a
+  guess — the captures range from nearly square to a 4.5:1 strip, and a wrong
+  height makes the page jump when the image loads.
+{%- endcomment -%}
+{%- assign lang = include.lang | default: page.lang -%}
+{%- assign base = '/assets/img/shots/' | append: include.plugin | append: '/' | append: lang | append: '/' | append: include.file -%}
+{%- assign dim = site.data.shots[include.plugin][lang][include.file] -%}
+{%- assign cap = include.caption | strip_newlines | strip -%}
+<figure class="shot">
+  <button type="button" class="shot__btn"
+          data-zoom-src="{{ base | append: '@2x.webp' | relative_url }}"
+          data-zoom-cap="{{ cap | escape }}"
+          aria-label="{{ site.data.i18n[page.lang].shot_zoom }}">
+    <img src="{{ base | append: '.webp' | relative_url }}"
+         srcset="{{ base | append: '.webp' | relative_url }} 1440w, {{ base | append: '@2x.webp' | relative_url }} 2400w"
+         sizes="(min-width: 860px) 640px, 100vw"
+         alt="{{ cap | escape }}"
+         loading="lazy" decoding="async"
+         width="{{ dim.w | default: 1440 }}" height="{{ dim.h | default: 900 }}">
+  </button>
+  <figcaption>{{ cap }}</figcaption>
+</figure>

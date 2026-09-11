@@ -1,0 +1,25 @@
+{%- assign p = include.plugin -%}
+{%- assign t = include.t -%}
+{%- assign rel = site.data.releases[p.id] -%}
+{%- assign slug = p.repo | split: '/' | last -%}
+<h2 id="install">{{ t.install_heading }}</h2>
+<ol class="steps">
+  <li>{{ include.step1 }}
+    {%- if rel.zip_url %} <a class="btn btn--plain" href="{{ rel.zip_url }}">{{ slug }}-{{ rel.version }}.zip</a>{% endif -%}
+  </li>
+  <li>{{ include.step2 }}
+{% highlight text %}
+cd /path/to/redmine
+unzip {{ slug }}-{{ rel.version | default: 'X.Y.Z' }}.zip -d plugins/
+{% endhighlight %}
+  </li>
+  {%- if p.migrations > 0 %}
+  <li>{{ include.step3 }}
+{% highlight text %}
+bundle exec rake redmine:plugins:migrate NAME={{ slug }} RAILS_ENV=production
+{% endhighlight %}
+  </li>
+  {%- endif %}
+  <li>{{ include.step4 }}</li>
+</ol>
+<div class="callout">{{ include.note | markdownify }}</div>

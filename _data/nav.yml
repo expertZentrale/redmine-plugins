@@ -1,0 +1,22 @@
+# Per-language URLs. Explicit beats computed: the German slugs are translated
+# (kompatibilitaet, impressum, datenschutz), so there is no rule to derive.
+en:
+  home: /
+  compatibility: /compatibility/
+  imprint: /imprint/
+  privacy: /privacy/
+  plugins:
+    helpdesk: /helpdesk/
+    agile: /agile/
+    metrics: /metrics/
+    lightbox: /lightbox/
+de:
+  home: /de/
+  compatibility: /de/kompatibilitaet/
+  imprint: /de/impressum/
+  privacy: /de/datenschutz/
+  plugins:
+    helpdesk: /de/helpdesk/
+    agile: /de/agile/
+    metrics: /de/metrics/
+    lightbox: /de/lightbox/

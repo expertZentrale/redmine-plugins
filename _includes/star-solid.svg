@@ -1,0 +1,11 @@
+{%- comment -%}
+  The expert star without its stripes. At 26px in the masthead the striped
+  version collapses into an unreadable stack of bars; solid it still reads as
+  a star. The striped one stays for the hero, where it is 500px wide.
+{%- endcomment -%}
+<svg viewBox="0 0 100 100" fill="none" aria-hidden="true" focusable="false">
+  <g fill="currentColor">
+    <polygon points="50,6 89,72 11,72"/>
+    <polygon points="50,94 11,28 89,28"/>
+  </g>
+</svg>

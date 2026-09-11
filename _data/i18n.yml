@@ -1,0 +1,102 @@
+# Chrome strings only — navigation, buttons, labels, footer.
+# Page prose lives in the Markdown pages themselves.
+
+en:
+  locale: en
+  locale_full: en_GB
+  lang_name: English
+  other_lang_name: Deutsch
+  skip_to_content: Skip to content
+  nav_home: Home
+  nav_plugins: Plugins
+  nav_compatibility: Compatibility
+  nav_github: GitHub
+  cta_download: Download
+  cta_docs: Documentation
+  cta_issues: Report an issue
+  cta_source: Source code
+  cta_changelog: Changelog
+  cta_api: REST API
+  cta_learn_more: Learn more
+  latest_release: Latest release
+  no_release: No release yet
+  released_on: released
+  version: Version
+  license: Licence
+  requires: Requires
+  redmine_versions: Redmine
+  ruby_versions: Ruby
+  database: Database
+  gems: Additional gems
+  gems_none: None
+  gems_optional: Optional
+  migrations: Migrations
+  migrations_none: None
+  tested_ci: Tested in CI
+  tested_manual: Manually verified
+  bundled: Bundled components
+  bundled_none: None
+  install_heading: Installing
+  screenshots_heading: Screenshots
+  features_heading: What it does
+  why_heading: Why this one
+  compat_heading: Compatibility
+  all_plugins: All four plugins
+  footer_license: Released under the GNU General Public License v2 or later, the same licence Redmine itself uses.
+  footer_imprint: Imprint
+  footer_privacy: Privacy
+  footer_note: Not affiliated with the Redmine project.
+  shot_zoom: Enlarge
+  shot_close: Close
+  shot_prev: Previous
+  shot_next: Next
+
+de:
+  locale: de
+  locale_full: de_DE
+  lang_name: Deutsch
+  other_lang_name: English
+  skip_to_content: Zum Inhalt springen
+  nav_home: Start
+  nav_plugins: Plugins
+  nav_compatibility: Kompatibilität
+  nav_github: GitHub
+  cta_download: Herunterladen
+  cta_docs: Dokumentation
+  cta_issues: Fehler melden
+  cta_source: Quellcode
+  cta_changelog: Änderungen
+  cta_api: REST-API
+  cta_learn_more: Mehr erfahren
+  latest_release: Aktuelle Version
+  no_release: Noch keine Version
+  released_on: veröffentlicht
+  version: Version
+  license: Lizenz
+  requires: Voraussetzungen
+  redmine_versions: Redmine
+  ruby_versions: Ruby
+  database: Datenbank
+  gems: Zusätzliche Gems
+  gems_none: Keine
+  gems_optional: Optional
+  migrations: Migrationen
+  migrations_none: Keine
+  tested_ci: In CI getestet
+  tested_manual: Manuell geprüft
+  bundled: Mitgelieferte Komponenten
+  bundled_none: Keine
+  install_heading: Installation
+  screenshots_heading: Screenshots
+  features_heading: Was es kann
+  why_heading: Warum dieses
+  compat_heading: Kompatibilität
+  all_plugins: Alle vier Plugins
+  footer_license: Veröffentlicht unter der GNU General Public License v2 oder später — derselben Lizenz, die auch Redmine verwendet.
+  footer_imprint: Impressum
+  footer_privacy: Datenschutz
+  footer_note: Kein offizielles Projekt von Redmine.
+  shot_zoom: Vergrößern
+  shot_close: Schließen
+  shot_prev: Zurück
+  shot_next: Weiter
