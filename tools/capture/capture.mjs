@@ -27,6 +27,22 @@ const outIdx = process.argv.indexOf('--out');
 const outDir = outIdx > -1 ? process.argv[outIdx + 1]
   : resolve(here, 'shots-raw', plugin, lang);
 
+// A dashboard screenshot taken at a real "now" shows whatever the clock says,
+// and the clock is often a Sunday evening — every stat panel then reads 1 and
+// the product looks dead. Anchor the window on the most recent working-day
+// mid-morning instead, which is both the honest busy case and reproducible.
+function lastWorkdayMorning() {
+  const end = new Date();
+  end.setUTCHours(10, 30, 0, 0);
+  if (end > new Date()) end.setUTCDate(end.getUTCDate() - 1);
+  while (end.getUTCDay() === 0 || end.getUTCDay() === 6) {
+    end.setUTCDate(end.getUTCDate() - 1);
+  }
+  const start = new Date(end);
+  start.setUTCDate(start.getUTCDate() - 5);
+  return { from: start.getTime(), to: end.getTime() };
+}
+
 const spec = cfg.plugins[plugin];
 if (!spec) { console.error(`unknown plugin: ${plugin}`); process.exit(1); }
 if (!spec.shots.length) { console.log(`  ${plugin}: no shots defined yet`); process.exit(0); }
@@ -61,18 +77,35 @@ async function setLanguage(code) {
   await page.waitForLoadState('networkidle');
 }
 
-await signIn(spec.login || cfg.login);
-await setLanguage(lang);
+// Only sign in if at least one shot actually needs a Redmine session. The
+// Grafana dashboard shot does not — that container runs with anonymous access.
+if (spec.shots.some(s => !s.noAuth)) {
+  await signIn(spec.login || cfg.login);
+  await setLanguage(lang);
+}
 
 for (const shot of spec.shots) {
-  await page.goto(cfg.baseUrl + shot.url, { waitUntil: 'networkidle' });
-  await page.evaluate(() => document.fonts.ready);
+  const target_page = shot.viewport
+    ? await ctx.newPage() : page;
+  if (shot.viewport) await target_page.setViewportSize(shot.viewport);
+
+  let url = (shot.base || cfg.baseUrl) + shot.url;
+  if (shot.timeRange === 'lastWorkdayMorning') {
+    const { from, to } = lastWorkdayMorning();
+    url += `${url.includes('?') ? '&' : '?'}from=${from}&to=${to}`;
+  }
+  await target_page.goto(url, { waitUntil: 'networkidle' });
+  await target_page.evaluate(() => document.fonts.ready);
+  if (shot.waitFor) await target_page.waitForSelector(shot.waitFor, { timeout: 30000 });
+  // Grafana renders panels progressively after the layout exists, so a plain
+  // networkidle is not enough to catch a dashboard with every graph drawn.
+  if (shot.settleMs) await target_page.waitForTimeout(shot.settleMs);
   // Redmine's flash messages and the admin page's own auto-refresh meta would
   // both make a capture non-reproducible.
-  await page.evaluate(() => {
+  await target_page.evaluate(() => {
     document.querySelectorAll('#flash_notice, .flash').forEach(el => el.remove());
   });
-  const target = shot.clip ? page.locator(shot.clip).first() : page;
+  const target = shot.clip ? target_page.locator(shot.clip).first() : target_page;
   const path = resolve(outDir, `${shot.file}.png`);
   await target.screenshot({ path });
 
@@ -86,6 +119,7 @@ for (const shot of spec.shots) {
                              '-bordercolor', 'white', '-border', '28', path]);
   }
   console.log(`  ${plugin}/${lang}/${shot.file}.png`);
+  if (shot.viewport) await target_page.close();
 }
 
 await browser.close();

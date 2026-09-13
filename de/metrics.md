@@ -103,6 +103,11 @@ features:
   - kicker: Grafana
     title: Ein Dashboard, das die Fallen schon kennt
     shot: 04-grafana
+    caption: >-
+      Das mitgelieferte Dashboard über eine Arbeitswoche: aktive Benutzer in den
+      drei Zeitfenstern, offene Sitzungen, Konten nach Status, offene und
+      geschlossene Tickets sowie Kunden- und Benachrichtigungsmail pro Stunde.
+      Die Panel-Titel sind wie ausgeliefert englisch.
     body: >-
       Mitgeliefertes JSON importieren, Prometheus-Datenquelle auswählen, fertig.
       Zeilen für *Gerade jetzt*, *Benutzer, Projekte und Tickets*, *Mail* und

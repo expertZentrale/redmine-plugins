@@ -100,6 +100,11 @@ features:
   - kicker: Grafana
     title: A dashboard that already knows the traps
     shot: 04-grafana
+    caption: >-
+      The shipped dashboard over a working week: active users across the three
+      windows, logged-in sessions, accounts by status, open and closed issues,
+      and customer versus notification mail per hour. Panel titles are English
+      as shipped.
     body: >-
       Import the shipped JSON, pick your Prometheus datasource, done. Rows for
       *Right now*, *Users, projects and issues*, *Mail* and *Scrape health*,

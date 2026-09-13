@@ -1,22 +1,49 @@
 {
   "baseUrl": "http://localhost:3001",
-  "login": { "user": "s.weiss", "password": "screenshots" },
-  "viewport": { "width": 1440, "height": 900 },
+  "login": {
+    "user": "s.weiss",
+    "password": "screenshots"
+  },
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
   "deviceScaleFactor": 2,
   "plugins": {
     "metrics": {
-      "login": { "user": "s.weiss", "password": "screenshots" },
+      "login": {
+        "user": "s.weiss",
+        "password": "screenshots"
+      },
       "shots": [
         {
           "file": "01-active-users",
           "url": "/admin/active_users",
           "clip": "#content",
           "note": "admin page: summary box + active users table"
+        },
+        {
+          "file": "04-grafana",
+          "base": "http://localhost:3002",
+          "url": "/d/redmine-expert-metrics/?kiosk",
+          "noAuth": true,
+          "viewport": {
+            "width": 1600,
+            "height": 1500
+          },
+          "waitFor": ".react-grid-layout",
+          "settleMs": 9000,
+          "trim": false,
+          "note": "shipped dashboard on the screenshots stack, 7 days of backfilled history",
+          "timeRange": "lastWorkdayMorning"
         }
       ]
     },
     "lightbox": {
-      "login": { "user": "screenshot-lightbox", "password": "screenshots" },
+      "login": {
+        "user": "screenshot-lightbox",
+        "password": "screenshots"
+      },
       "shots": []
     }
   }
