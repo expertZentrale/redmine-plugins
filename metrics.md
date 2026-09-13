@@ -112,9 +112,6 @@ features:
       aggregates with `max` rather than `sum`, and joins `up` against a 24-hour
       lookback so a dead target shows as 0 instead of going stale.
 
-      **Merged, but not in the current release yet** — it ships with the next
-      one. Everything it draws is already exposed by `/metrics` today, so the
-      plugin is useful without it.
 
 why:
   - "**Zero configuration and zero permissions.** No settings page, no roles to grant. It works the moment it loads."
@@ -139,6 +136,5 @@ install:
 No gems, no settings, no permissions, one migration. Works on MariaDB, MySQL
 and PostgreSQL, and with any session store.
 
-The Grafana dashboard is merged but not yet part of
-{{ site.data.releases.metrics.tag }}; it ships as
-`contrib/grafana/redmine-expert-metrics.json` with the next release.
+The Grafana dashboard ships inside the release archive as
+`contrib/grafana/redmine-expert-metrics.json` — nothing extra to download.

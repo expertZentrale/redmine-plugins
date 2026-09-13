@@ -117,9 +117,6 @@ features:
       `max` statt mit `sum` — und verknüpft `up` mit einem 24-Stunden-Rückblick,
       damit ein totes Ziel als 0 erscheint statt zu veralten.
 
-      **Zusammengeführt, aber noch nicht in der aktuellen Version** — es kommt
-      mit der nächsten. Alles, was es zeichnet, liefert `/metrics` schon heute —
-      das Plugin ist auch ohne das Dashboard nützlich.
 
 why:
   - "**Keine Konfiguration und keine Berechtigungen.** Keine Einstellungsseite, keine Rollen zu vergeben. Es arbeitet, sobald es geladen ist."
@@ -144,6 +141,6 @@ install:
 Keine Gems, keine Einstellungen, keine Berechtigungen, eine Migration. Läuft auf
 MariaDB, MySQL und PostgreSQL und mit jedem Session-Store.
 
-Das Grafana-Dashboard ist zusammengeführt, aber noch nicht Teil von
-{{ site.data.releases.metrics.tag }}; es wird mit der nächsten Version als
-`contrib/grafana/redmine-expert-metrics.json` ausgeliefert.
+Das Grafana-Dashboard liegt im Release-Archiv unter
+`contrib/grafana/redmine-expert-metrics.json` — es ist nichts zusätzlich
+herunterzuladen.
