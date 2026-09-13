@@ -24,6 +24,8 @@ features:
   - kicker: Vorschau
     title: Bilder und PDFs, an Ort und Stelle
     shot: 01-image-modal
+    caption: >-
+      Ein Bildanhang im Dialog über der Ticketseite, mit dem Zähler „1 / 4“ und den Schaltflächen für Zurück und Weiter in der Kopfzeile.
     body: >-
       Ein Bild öffnet sich auf Fenstergröße skaliert, ein PDF im eingebauten
       PDF-Betrachter des Browsers. Alles andere verhält sich genau wie vorher —
@@ -31,9 +33,25 @@ features:
       `Esc` oder ein Klick auf den Hintergrund schließt den Dialog, und der Fokus
       kehrt zu dem Link zurück, den Sie angeklickt haben.
 
+  - kicker: PDFs
+    title: Und PDFs, im Betrachter des Browsers
+    shot: 03-pdf
+    caption: >-
+      Ein PDF im eingebauten Betrachter des Browsers innerhalb des Dialogs, samt
+      Werkzeugleiste und Seitenvorschau. Die Klickflächen am Rand entfallen hier,
+      damit sie dem Betrachter keine Klicks wegnehmen.
+    body: >-
+      Ein PDF öffnet sich im Betrachter, den der Browser ohnehin mitbringt —
+      Scrollen, Zoom, Seitenvorschau, Drucken und Speichern verhalten sich wie
+      immer. Die Klickflächen am Bildrand entfallen über einem PDF bewusst: Sie
+      lägen über dessen eigener Werkzeugleiste und dem Scrollen. Zum
+      Weiterblättern bleiben die Schaltflächen in der Kopfzeile.
+
   - kicker: Galerie
     title: Vier Wege durch den Satz
     shot: 02-gallery
+    caption: >-
+      Der dritte von vier Anhängen, mit der rechten Klickfläche, die beim Überfahren erscheint — unsichtbar, bis man danach greift, auf Touchgeräten dauerhaft sichtbar.
     body: >-
       Alle anzeigbaren Anhänge einer Seite bilden in Dokumentreihenfolge eine
       Galerie. Durchblättern geht mit den Pfeiltasten, den Schaltflächen in der
@@ -44,7 +62,9 @@ features:
 
   - kicker: Überall
     title: Keine Liste erlaubter Seiten
-    shot: 03-wiki
+    shot: 04-wiki
+    caption: >-
+      Ein eingebettetes Wiki-Bild, geöffnet ohne die Seite zu verlassen, die es illustriert.
     body: >-
       Ticketanhänge, Vorschaubilder im Verlauf, eingebettete Wiki-Bilder, die
       Module Dateien und Dokumente, Neuigkeiten und Forenbeiträge — und jede

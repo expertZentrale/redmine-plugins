@@ -49,7 +49,10 @@ if (!spec.shots.length) { console.log(`  ${plugin}: no shots defined yet`); proc
 
 mkdirSync(outDir, { recursive: true });
 
-const browser = await chromium.launch();
+// channel:'chromium' picks the full browser build rather than the headless shell
+// Playwright uses by default. The shell ships no PDF viewer, so the PDF shot came
+// out as an empty white dialog.
+const browser = await chromium.launch({ channel: 'chromium' });
 const ctx = await browser.newContext({
   viewport: cfg.viewport,
   deviceScaleFactor: cfg.deviceScaleFactor,
@@ -97,6 +100,19 @@ for (const shot of spec.shots) {
   await target_page.goto(url, { waitUntil: 'networkidle' });
   await target_page.evaluate(() => document.fonts.ready);
   if (shot.waitFor) await target_page.waitForSelector(shot.waitFor, { timeout: 30000 });
+
+  // Some surfaces only exist after an interaction — the lightbox dialog is
+  // created by the click that opens it, and its edge chevrons only fade in on
+  // hover, which is exactly the behaviour worth showing.
+  for (const action of shot.actions || []) {
+    if (action.click) await target_page.click(action.click);
+    if (action.hover) await target_page.hover(action.hover);
+    if (action.mouse) {
+      const vp = target_page.viewportSize();
+      await target_page.mouse.move(vp.width * action.mouse[0], vp.height * action.mouse[1]);
+    }
+    if (action.waitMs) await target_page.waitForTimeout(action.waitMs);
+  }
   // Grafana renders panels progressively after the layout exists, so a plain
   // networkidle is not enough to catch a dashboard with every graph drawn.
   if (shot.settleMs) await target_page.waitForTimeout(shot.settleMs);

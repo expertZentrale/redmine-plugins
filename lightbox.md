@@ -24,15 +24,33 @@ features:
   - kicker: Preview
     title: Images and PDFs, in place
     shot: 01-image-modal
+    caption: >-
+      An image attachment open in the dialog over the ticket page, with the counter showing one of four and the previous/next controls in the bar.
     body: >-
       An image opens scaled to fit the viewport; a PDF opens in the browser's
       own PDF viewer. Anything else behaves exactly as it did before — the
       plugin does not interfere with files it cannot preview. `Esc` or a click
       on the backdrop closes it, and focus returns to the link you clicked.
 
+  - kicker: PDFs
+    title: And PDFs, in the browser's own viewer
+    shot: 03-pdf
+    caption: >-
+      A PDF in the browser's own viewer inside the dialog, toolbar and page
+      thumbnails included. Edge zones are suppressed here so they cannot swallow
+      the viewer's own clicks.
+    body: >-
+      A PDF opens in the viewer the browser already has — scrolling, zoom, page
+      thumbnails, print and save all behave as they always do. The edge click
+      zones are deliberately left out over a PDF, because they would sit on top
+      of that viewer's own toolbar and scrolling; the buttons in the top bar
+      remain the way to step past it.
+
   - kicker: Gallery
     title: Four ways through the set
     shot: 02-gallery
+    caption: >-
+      The third of four attachments, with the right-hand edge zone revealed on hover — invisible until you reach for it, always visible on touch.
     body: >-
       Every previewable attachment on the page becomes a gallery in document
       order. Step through it with the arrow keys, the buttons in the top bar,
@@ -43,7 +61,9 @@ features:
 
   - kicker: Everywhere
     title: No per-page allowlist
-    shot: 03-wiki
+    shot: 04-wiki
+    caption: >-
+      An inline wiki image, opened without leaving the page it illustrates.
     body: >-
       Issue attachments, journal thumbnails, inline wiki images, the Files and
       Documents modules, news and forum posts — and any third-party plugin page

@@ -41,10 +41,94 @@
     },
     "lightbox": {
       "login": {
-        "user": "screenshot-lightbox",
+        "user": "m.keller",
         "password": "screenshots"
       },
-      "shots": []
+      "shots": [
+        {
+          "file": "01-image-modal",
+          "url": "/projects/field-service/issues",
+          "actions": [
+            {
+              "click": "table.issues td.subject a"
+            },
+            {
+              "waitMs": 800
+            },
+            {
+              "click": "a.icon-attachment:has-text('01-error-dialog.png')"
+            },
+            {
+              "waitMs": 1400
+            }
+          ],
+          "trim": false,
+          "note": "image attachment open in the dialog, over the dimmed issue page"
+        },
+        {
+          "file": "02-gallery",
+          "url": "/projects/field-service/issues",
+          "actions": [
+            {
+              "click": "table.issues td.subject a"
+            },
+            {
+              "waitMs": 800
+            },
+            {
+              "click": "a.icon-attachment:has-text('03-network-diagram.png')"
+            },
+            {
+              "waitMs": 1000
+            },
+            {
+              "mouse": [
+                0.9,
+                0.55
+              ]
+            },
+            {
+              "waitMs": 800
+            }
+          ],
+          "trim": false,
+          "note": "third of four, with the right-hand edge chevron revealed by hover"
+        },
+        {
+          "file": "03-pdf",
+          "url": "/projects/field-service/issues",
+          "actions": [
+            {
+              "click": "table.issues td.subject a"
+            },
+            {
+              "waitMs": 800
+            },
+            {
+              "click": "a.icon-attachment:has-text('04-inspection-report.pdf')"
+            },
+            {
+              "waitMs": 3000
+            }
+          ],
+          "trim": false,
+          "note": "PDF in the browser's own viewer inside the dialog"
+        },
+        {
+          "file": "04-wiki",
+          "url": "/projects/field-service/wiki/Branch_042",
+          "actions": [
+            {
+              "click": ".wiki-page img[src*='/attachments/'], .wiki img[src*='/attachments/']"
+            },
+            {
+              "waitMs": 1400
+            }
+          ],
+          "trim": false,
+          "note": "inline wiki image, opened without leaving the page"
+        }
+      ]
     }
   }
 }
