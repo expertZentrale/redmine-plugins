@@ -32,3 +32,8 @@ helpdesk:
     06-reply: {w: 1440, h: 357}
     08-mailbox-form: {w: 1440, h: 2085}
     11-ticket-dashboard: {w: 1280, h: 3191}
+metrics:
+  de:
+    01-active-users: {w: 1440, h: 765}
+  en:
+    01-active-users: {w: 1440, h: 765}

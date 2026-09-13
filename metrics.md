@@ -23,6 +23,11 @@ features:
   - kicker: Right now
     title: Who is actually in there
     shot: 01-active-users
+    caption: >-
+      Administration → expert Metrics: active users over 5, 15 and 60 minutes,
+      live sessions and logins in the last 24 hours, above a table of everyone
+      with a request in the last hour — login, name, last activity, logged in
+      since, and how many sessions they hold.
     body: >-
       An **expert Metrics** entry in the Administration menu lists every user
       with a request in the last 60 minutes, most recent first: login, name,
@@ -33,23 +38,64 @@ features:
 
   - kicker: Scripting
     title: The same answer, as JSON
-    shot: 02-json
-    body: >-
+    body: |-
       `/admin/active_users.json` returns the same data for a script, authorised
-      with an admin API key. A one-line `curl | jq '.summary.active_users'` in
-      front of your deployment job turns "probably nobody" into a gate.
+      with an admin API key — so "probably nobody is on it" becomes a gate your
+      deployment job can actually check.
+
+      ```bash
+      curl -sH "X-Redmine-API-Key: $KEY" \
+           https://redmine.example.com/admin/active_users.json \
+        | jq '.summary.active_users["5m"]'
+      ```
+
+      ```json
+      {
+        "collected_at": "2026-09-13T09:27:25Z",
+        "window_minutes": 60,
+        "summary": {
+          "active_users": { "5m": 2, "15m": 6, "60m": 9 },
+          "sessions": 14,
+          "recent_logins_24h": 11,
+          "users": { "active": 14, "registered": 1, "locked": 1 },
+          "projects_active": 4,
+          "issues_open": 76,
+          "issues_closed": 387
+        },
+        "active_users": [
+          { "login": "a.berger", "name": "Anna Berger",
+            "last_activity": "2026-09-13T09:23:34Z", "sessions": 2 }
+        ]
+      }
+      ```
 
   - kicker: Monitoring
     title: Prometheus on /metrics
-    shot: 03-metrics-endpoint
-    body: >-
+    body: |-
       Standard text exposition, aggregate numbers only — **never user names**.
-      Active users per window, live sessions, recent logins, user, project and
-      issue totals, notification mail sent per project, and helpdesk customer
-      mail per project and direction when the helpdesk plugin is installed.
       Open by default; set a token in `configuration.yml` to require a bearer
       token instead, and it keeps answering even with "Authentication required"
       switched on.
+
+      ```
+      redmine_active_users{window="5m"} 3
+      redmine_active_users{window="15m"} 5
+      redmine_active_users{window="60m"} 8
+      redmine_sessions_total 12
+      redmine_recent_logins_users{window="24h"} 10
+      redmine_users_total{status="active"} 14
+      redmine_users_total{status="locked"} 1
+      redmine_projects_total{status="active"} 4
+      redmine_issues_total{state="open"} 76
+      redmine_issues_total{state="closed"} 387
+      redmine_notifications_sent_total{project="customer-support"} 412
+      redmine_helpdesk_mails_total{project="customer-support",direction="in"} 148
+      redmine_helpdesk_mails_total{project="customer-support",direction="out"} 131
+      redmine_info{redmine_version="7.0.0.stable",plugin_version="1.1.1"} 1
+      ```
+
+      The helpdesk lines appear only when expert Helpdesk is installed; neither
+      plugin requires the other.
 
   - kicker: Grafana
     title: A dashboard that already knows the traps

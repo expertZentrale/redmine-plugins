@@ -1,0 +1,23 @@
+{
+  "baseUrl": "http://localhost:3001",
+  "login": { "user": "s.weiss", "password": "screenshots" },
+  "viewport": { "width": 1440, "height": 900 },
+  "deviceScaleFactor": 2,
+  "plugins": {
+    "metrics": {
+      "login": { "user": "s.weiss", "password": "screenshots" },
+      "shots": [
+        {
+          "file": "01-active-users",
+          "url": "/admin/active_users",
+          "clip": "#content",
+          "note": "admin page: summary box + active users table"
+        }
+      ]
+    },
+    "lightbox": {
+      "login": { "user": "screenshot-lightbox", "password": "screenshots" },
+      "shots": []
+    }
+  }
+}

@@ -24,6 +24,11 @@ features:
   - kicker: Gerade jetzt
     title: Wer tatsächlich drin ist
     shot: 01-active-users
+    caption: >-
+      Administration → expert Metrics: aktive Benutzer über 5, 15 und 60
+      Minuten, offene Sitzungen und Anmeldungen der letzten 24 Stunden, darunter
+      eine Tabelle aller Benutzer mit einer Anfrage in der letzten Stunde —
+      Mitgliedsname, Name, letzte Aktivität, angemeldet seit und Anzahl Sitzungen.
     body: >-
       Ein Eintrag **expert Metrics** im Administrationsmenü listet jeden Benutzer
       mit einem Request in den letzten 60 Minuten, den jüngsten zuerst: Login,
@@ -34,25 +39,66 @@ features:
 
   - kicker: Automatisierung
     title: Dieselbe Antwort als JSON
-    shot: 02-json
-    body: >-
+    body: |-
       `/admin/active_users.json` liefert dieselben Daten für ein Skript,
-      autorisiert über einen Administrator-API-Schlüssel. Ein einzeiliges
-      `curl | jq '.summary.active_users'` vor Ihrem Deployment-Job macht aus
-      „wahrscheinlich niemand“ eine Bedingung.
+      autorisiert über einen Administrator-API-Schlüssel — aus „wahrscheinlich
+      ist gerade niemand drin“ wird damit eine Bedingung, die Ihr
+      Deployment-Job tatsächlich prüfen kann.
+
+      ```bash
+      curl -sH "X-Redmine-API-Key: $KEY" \
+           https://redmine.example.com/admin/active_users.json \
+        | jq '.summary.active_users["5m"]'
+      ```
+
+      ```json
+      {
+        "collected_at": "2026-09-13T09:27:25Z",
+        "window_minutes": 60,
+        "summary": {
+          "active_users": { "5m": 2, "15m": 6, "60m": 9 },
+          "sessions": 14,
+          "recent_logins_24h": 11,
+          "users": { "active": 14, "registered": 1, "locked": 1 },
+          "projects_active": 4,
+          "issues_open": 76,
+          "issues_closed": 387
+        },
+        "active_users": [
+          { "login": "a.berger", "name": "Anna Berger",
+            "last_activity": "2026-09-13T09:23:34Z", "sessions": 2 }
+        ]
+      }
+      ```
 
   - kicker: Monitoring
     title: Prometheus unter /metrics
-    shot: 03-metrics-endpoint
-    body: >-
+    body: |-
       Standard-Textformat, ausschließlich aggregierte Zahlen — **niemals
-      Benutzernamen**. Aktive Benutzer je Zeitfenster, offene Sitzungen,
-      Anmeldungen, Gesamtzahlen zu Benutzern, Projekten und Tickets,
-      Benachrichtigungsmails je Projekt sowie Helpdesk-Kundenmails je Projekt und
-      Richtung, wenn das Helpdesk-Plugin installiert ist. Standardmäßig offen;
-      ein Token in der `configuration.yml` verlangt stattdessen einen
-      Bearer-Token — und der Endpunkt antwortet auch dann noch, wenn
-      „Authentifizierung erforderlich“ eingeschaltet ist.
+      Benutzernamen**. Standardmäßig offen; ein Token in der
+      `configuration.yml` verlangt stattdessen einen Bearer-Token — und der
+      Endpunkt antwortet auch dann noch, wenn „Authentifizierung erforderlich“
+      eingeschaltet ist.
+
+      ```
+      redmine_active_users{window="5m"} 3
+      redmine_active_users{window="15m"} 5
+      redmine_active_users{window="60m"} 8
+      redmine_sessions_total 12
+      redmine_recent_logins_users{window="24h"} 10
+      redmine_users_total{status="active"} 14
+      redmine_users_total{status="locked"} 1
+      redmine_projects_total{status="active"} 4
+      redmine_issues_total{state="open"} 76
+      redmine_issues_total{state="closed"} 387
+      redmine_notifications_sent_total{project="customer-support"} 412
+      redmine_helpdesk_mails_total{project="customer-support",direction="in"} 148
+      redmine_helpdesk_mails_total{project="customer-support",direction="out"} 131
+      redmine_info{redmine_version="7.0.0.stable",plugin_version="1.1.1"} 1
+      ```
+
+      Die Helpdesk-Zeilen erscheinen nur, wenn expert Helpdesk installiert ist;
+      keines der beiden Plugins setzt das andere voraus.
 
   - kicker: Grafana
     title: Ein Dashboard, das die Fallen schon kennt
