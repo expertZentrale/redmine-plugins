@@ -104,18 +104,22 @@ features:
     title: Ein Dashboard, das die Fallen schon kennt
     shot: 04-grafana
     caption: >-
-      Das mitgelieferte Dashboard über eine Arbeitswoche: aktive Benutzer in den
-      drei Zeitfenstern, offene Sitzungen, Konten nach Status, offene und
+      Das Dashboard über eine Arbeitswoche: aktive Benutzer in den drei
+      Zeitfenstern, offene Sitzungen, Konten nach Status, offene und
       geschlossene Tickets sowie Kunden- und Benachrichtigungsmail pro Stunde.
-      Die Panel-Titel sind wie ausgeliefert englisch.
-    body: >-
-      Mitgeliefertes JSON importieren, Prometheus-Datenquelle auswählen, fertig.
-      Zeilen für *Gerade jetzt*, *Benutzer, Projekte und Tickets*, *Mail* und
+      Die Panel-Titel sind englisch.
+    body: |-
+      JSON importieren, Prometheus-Datenquelle auswählen, fertig. Zeilen für
+      *Gerade jetzt*, *Benutzer, Projekte und Tickets*, *Mail* und
       *Scrape-Gesundheit*, dazu zwei Textpanels, die erklären, wie das Dashboard
-      zu lesen ist. Die Kubernetes-Falle ist eingebaut: Jeder Pod meldet dieselben
-      datenbankweiten Zahlen, deshalb aggregiert das Dashboard mit `max` statt mit
-      `sum` — und verknüpft `up` mit einem 24-Stunden-Rückblick, damit ein totes
-      Ziel als 0 erscheint statt zu veralten.
+      zu lesen ist. Die Kubernetes-Falle ist eingebaut: Jeder Pod meldet
+      dieselben datenbankweiten Zahlen, deshalb aggregiert das Dashboard mit
+      `max` statt mit `sum` — und verknüpft `up` mit einem 24-Stunden-Rückblick,
+      damit ein totes Ziel als 0 erscheint statt zu veralten.
+
+      **Noch nicht in der aktuellen Version.** Das Dashboard ist in Prüfung und
+      kommt mit der nächsten. Alles, was es zeichnet, liefert `/metrics` schon
+      heute — das Plugin ist auch ohne das Dashboard nützlich.
 
 why:
   - "**Keine Konfiguration und keine Berechtigungen.** Keine Einstellungsseite, keine Rollen zu vergeben. Es arbeitet, sobald es geladen ist."
@@ -140,5 +144,6 @@ install:
 Keine Gems, keine Einstellungen, keine Berechtigungen, eine Migration. Läuft auf
 MariaDB, MySQL und PostgreSQL und mit jedem Session-Store.
 
-Das Grafana-Dashboard liegt im Repository unter
-`contrib/grafana/redmine-expert-metrics.json`.
+Das Grafana-Dashboard ist nicht Teil von {{ site.data.releases.metrics.tag }};
+es ist in Prüfung und wird mit der nächsten Version als
+`contrib/grafana/redmine-expert-metrics.json` ausgeliefert.

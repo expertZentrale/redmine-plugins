@@ -101,17 +101,20 @@ features:
     title: A dashboard that already knows the traps
     shot: 04-grafana
     caption: >-
-      The shipped dashboard over a working week: active users across the three
-      windows, logged-in sessions, accounts by status, open and closed issues,
-      and customer versus notification mail per hour. Panel titles are English
-      as shipped.
-    body: >-
-      Import the shipped JSON, pick your Prometheus datasource, done. Rows for
-      *Right now*, *Users, projects and issues*, *Mail* and *Scrape health*,
-      plus two text panels explaining how to read it. The Kubernetes trap is
-      baked in: every pod reports the same database-wide numbers, so the
-      dashboard aggregates with `max` rather than `sum`, and joins `up` against
-      a 24-hour lookback so a dead target shows as 0 instead of going stale.
+      The dashboard over a working week: active users across the three windows,
+      logged-in sessions, accounts by status, open and closed issues, and
+      customer versus notification mail per hour. Panel titles are English.
+    body: |-
+      Import the JSON, pick your Prometheus datasource, done. Rows for *Right
+      now*, *Users, projects and issues*, *Mail* and *Scrape health*, plus two
+      text panels explaining how to read it. The Kubernetes trap is baked in:
+      every pod reports the same database-wide numbers, so the dashboard
+      aggregates with `max` rather than `sum`, and joins `up` against a 24-hour
+      lookback so a dead target shows as 0 instead of going stale.
+
+      **Not in the current release yet.** The dashboard is still in review and
+      arrives with the next one. Everything it draws is already exposed by
+      `/metrics` today, so the plugin is useful without it.
 
 why:
   - "**Zero configuration and zero permissions.** No settings page, no roles to grant. It works the moment it loads."
@@ -136,5 +139,6 @@ install:
 No gems, no settings, no permissions, one migration. Works on MariaDB, MySQL
 and PostgreSQL, and with any session store.
 
-The Grafana dashboard lives at `contrib/grafana/redmine-expert-metrics.json` in
-the repository.
+The Grafana dashboard is not part of {{ site.data.releases.metrics.tag }}; it is
+still in review and will ship as `contrib/grafana/redmine-expert-metrics.json`
+with the next release.
