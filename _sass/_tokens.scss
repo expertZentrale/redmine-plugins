@@ -5,8 +5,12 @@
 // orange #F04C00, the deeper red #CD291F of the segmented arc, the #F58C66
 // card tint, and #3F4245 for the wordmark.
 //
-// Every colour is defined on bare :root first. The dark block redefines only
+// Every colour is defined on bare :root first. The dark set redefines only
 // the tokens, never introduces a colour that has no light-mode value.
+//
+// Theme: auto by default (follows the OS). The masthead switch can force one
+// by setting data-theme="light" or "dark" on <html>; the dark set is applied
+// both for auto-when-the-OS-is-dark and for an explicit data-theme="dark".
 
 :root {
   --brand:        #f04c00;
@@ -47,27 +51,30 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --brand:       #ff6b2c;
-    --brand-deep:  #ff8360;
-    --brand-tint:  #f58c66;
-    --brand-wash:  #2a1a12;
+@mixin dark {
+  --brand:       #ff6b2c;
+  --brand-deep:  #ff8360;
+  --brand-tint:  #f58c66;
+  --brand-wash:  #2a1a12;
 
-    --ink:         #e9e7e5;
-    --ink-soft:    #aeb1b4;
-    --ink-faint:   #868a8e;
+  --ink:         #e9e7e5;
+  --ink-soft:    #aeb1b4;
+  --ink-faint:   #868a8e;
 
-    --bg:          #16181a;
-    --bg-alt:      #1c1f22;
-    --bg-sunk:     #232629;
-    --border:      #2f3337;
-    --border-soft: #26292c;
+  --bg:          #16181a;
+  --bg-alt:      #1c1f22;
+  --bg-sunk:     #232629;
+  --border:      #2f3337;
+  --border-soft: #26292c;
 
-    --shadow-sm: 0 1px 2px rgb(0 0 0 / 40%);
-    --shadow-md: 0 2px 4px rgb(0 0 0 / 30%), 0 12px 28px rgb(0 0 0 / 40%);
-    --shadow-lg: 0 4px 8px rgb(0 0 0 / 35%), 0 24px 56px rgb(0 0 0 / 50%);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 40%);
+  --shadow-md: 0 2px 4px rgb(0 0 0 / 30%), 0 12px 28px rgb(0 0 0 / 40%);
+  --shadow-lg: 0 4px 8px rgb(0 0 0 / 35%), 0 24px 56px rgb(0 0 0 / 50%);
 
-    color-scheme: dark;
-  }
+  color-scheme: dark;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) { @include dark; }
+}
+:root[data-theme='dark'] { @include dark; }

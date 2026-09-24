@@ -50,6 +50,10 @@ en:
   shot_close: Close
   shot_prev: Previous
   shot_next: Next
+  theme_label: Colour scheme
+  theme_auto: Auto
+  theme_light: Light
+  theme_dark: Dark
 
 de:
   locale: de
@@ -100,3 +104,7 @@ de:
   shot_close: Schließen
   shot_prev: Zurück
   shot_next: Weiter
+  theme_label: Farbschema
+  theme_auto: Automatisch
+  theme_light: Hell
+  theme_dark: Dunkel

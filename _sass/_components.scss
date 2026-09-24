@@ -402,6 +402,7 @@ td.no  { color: var(--ink-faint); }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) td.yes { color: #4ecb85; }
 }
+:root[data-theme='dark'] td.yes { color: #4ecb85; }
 .table-note {
   font-size: .86rem;
   color: var(--ink-faint);

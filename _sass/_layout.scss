@@ -85,6 +85,27 @@
   &:hover { color: var(--brand); border-color: var(--brand); }
 }
 
+.masthead__theme {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  flex: none;
+  color: var(--ink-soft);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+
+  &:hover { color: var(--brand); border-color: var(--brand); }
+  &:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+  svg { width: 1rem; height: 1rem; display: none; }
+}
+:root:not([data-theme]) .masthead__theme-auto,
+:root[data-theme='light'] .masthead__theme-light,
+:root[data-theme='dark'] .masthead__theme-dark { display: block; }
+
 @media (max-width: 860px) {
   .masthead__inner {
     flex-wrap: wrap;
