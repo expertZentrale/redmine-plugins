@@ -9,14 +9,6 @@ description: >-
   Anfragen an Dritte. Gehostet auf GitHub Pages.
 ---
 
-<div class="callout" markdown="1">
-**Gerüst.** Die sachliche Beschreibung unten trifft auf die Website zu, wie sie
-gebaut ist. Die Angaben zum Verantwortlichen und der Abschnitt zu den
-Betroffenenrechten brauchen jedoch dieselben Unternehmensdaten wie das
-[Impressum]({{ '/de/impressum/' | relative_url }}), und die gesamte Seite sollte
-vor dem Livegang unter einer öffentlichen Domain geprüft werden.
-</div>
-
 ## Die kurze Fassung
 
 Dies ist eine statische Website. Sie setzt keine Cookies, betreibt keine
@@ -25,8 +17,22 @@ Kommentarfunktion. Nichts, was Sie hier tun, wird von uns aufgezeichnet.
 
 ## Verantwortlicher
 
-TODO — Firmierung, Anschrift und Kontakt, übereinstimmend mit dem Impressum.
-Datenschutzbeauftragter: TODO — Name und Kontakt, sofern bestellt.
+expert Warenvertrieb GmbH
+Bayernstr. 4
+30855 Langenhagen
+Deutschland
+E-Mail: [mail@expert.de](mailto:mail@expert.de)
+{: .address }
+
+Die vollständigen Anbieterangaben finden Sie im [Impressum]({{ '/de/impressum/' | relative_url }}).
+
+Den Datenschutzbeauftragten von expert erreichen Sie unter:
+
+expert Datenschutzbeauftragter
+Bayernstr. 4
+30855 Langenhagen
+E-Mail: [datenschutz@expert.de](mailto:datenschutz@expert.de)
+{: .address }
 
 ## Hosting
 
@@ -85,8 +91,19 @@ Da diese Website selbst keine personenbezogenen Daten speichert, beträfe ein
 Auskunfts- oder Löschersuchen allein die Server-Logs von GitHub, das Sie dafür
 unmittelbar adressieren müssten.
 
-TODO — den Kontaktweg zur Ausübung dieser Rechte bestätigen und die zuständige
-Aufsichtsbehörde benennen.
+Um diese Rechte auszuüben, wenden Sie sich bitte an unseren
+Datenschutzbeauftragten unter [datenschutz@expert.de](mailto:datenschutz@expert.de).
+
+Die für uns zuständige Aufsichtsbehörde ist:
+
+Die Landesbeauftragte für den Datenschutz Niedersachsen
+Prinzenstraße 5
+30159 Hannover
+Deutschland
+[lfd.niedersachsen.de](https://www.lfd.niedersachsen.de/)
+{: .address }
+
+Sie können sich auch an die Aufsichtsbehörde an Ihrem Wohn- oder Arbeitsort wenden.
 
 ## Zur Software selbst
 

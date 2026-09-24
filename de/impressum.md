@@ -7,57 +7,48 @@ title: Impressum
 description: Anbieterkennzeichnung und rechtliche Hinweise zu dieser Website.
 ---
 
-<div class="callout" markdown="1">
-**Diese Seite ist ein Gerüst, kein fertiges Impressum.** Jedes mit `TODO`
-markierte Feld muss aus dem Handelsregister von jemandem eingetragen werden, der
-dazu befugt ist — diese Angaben sind nach § 5 DDG rechtlich verbindlich und
-dürfen nicht geraten werden. Die Seite sollte nicht unter einer öffentlichen
-Domain online gehen, bevor sie vollständig ist.
-</div>
-
 ## Anbieter
 
 Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz):
 
-TODO — vollständige Firmierung
-TODO — Straße und Hausnummer
-TODO — PLZ und Ort
+expert Warenvertrieb GmbH
+Bayernstr. 4
+30855 Langenhagen
 Deutschland
 {: .address }
 
 ## Vertreten durch
 
-TODO — Geschäftsführung bzw. vertretungsberechtigte Personen
+Geschäftsführer: Stefan Müller, Christoph Komor, Holger Pöppe, Daniela Schreckling
 
 ## Kontakt
 
-E-Mail: TODO — Kontaktadresse
-Telefon: TODO — optional
+E-Mail: [mail@expert.de](mailto:mail@expert.de)
 
 ## Registereintrag
 
-Registergericht: TODO
-Registernummer: TODO — z. B. HRB 12345
+Registergericht: Amtsgericht Hannover
+Registernummer: HRB 543
+{: .address }
 
 ## Umsatzsteuer-Identifikationsnummer
 
-USt-IdNr. gemäß § 27 a UStG: TODO — z. B. DE123456789
+USt-IdNr. gemäß § 27 a UStG: DE813256340
 
 ## Verantwortlich für den Inhalt
 
 Nach § 18 Abs. 2 MStV:
 
-TODO — Name
-TODO — Anschrift, sofern abweichend
+Dennis Bühring
+expert Warenvertrieb GmbH
+Bayernstr. 4
+30855 Langenhagen
+{: .address }
 
-## Streitbeilegung
+## Verbraucherstreitbeilegung
 
-Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung
-bereit: [ec.europa.eu/consumers/odr](https://ec.europa.eu/consumers/odr/).
-
-TODO — die übliche Erklärung zur Bereitschaft oder Nichtbereitschaft zur
-Teilnahme an einem Streitbeilegungsverfahren vor einer
-Verbraucherschlichtungsstelle bestätigen.
+Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor
+einer Verbraucherschlichtungsstelle teilzunehmen.
 
 ## Zum Inhalt dieser Website
 

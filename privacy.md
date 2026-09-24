@@ -9,13 +9,6 @@ description: >-
   no third-party requests. Hosting is GitHub Pages.
 ---
 
-<div class="callout" markdown="1">
-**Scaffold.** The factual description below is accurate for the site as built,
-but the controller identification and the rights section need the same company
-details as the [imprint]({{ '/imprint/' | relative_url }}), and the whole page
-should be reviewed before the site goes live on a public domain.
-</div>
-
 ## The short version
 
 This is a static website. It sets no cookies, runs no analytics, embeds nothing
@@ -24,8 +17,22 @@ you do here is recorded by us.
 
 ## Controller
 
-TODO — legal company name, address and contact, matching the imprint.
-Data protection officer: TODO — name and contact, if one is appointed.
+expert Warenvertrieb GmbH
+Bayernstr. 4
+30855 Langenhagen
+Germany
+Email: [mail@expert.de](mailto:mail@expert.de)
+{: .address }
+
+Full provider details are in the [imprint]({{ '/imprint/' | relative_url }}).
+
+You can reach the expert data protection officer at:
+
+expert Datenschutzbeauftragter
+Bayernstr. 4
+30855 Langenhagen
+Email: [datenschutz@expert.de](mailto:datenschutz@expert.de)
+{: .address }
 
 ## Hosting
 
@@ -80,8 +87,19 @@ Since this site stores no personal data of its own, a request for access or
 erasure would concern only GitHub's server logs, which you would need to
 address to GitHub.
 
-TODO — confirm the contact route for exercising these rights, and name the
-competent supervisory authority.
+To exercise any of these rights, write to our data protection officer at
+[datenschutz@expert.de](mailto:datenschutz@expert.de).
+
+The supervisory authority responsible for us is:
+
+Die Landesbeauftragte für den Datenschutz Niedersachsen
+Prinzenstraße 5
+30159 Hannover
+Germany
+[lfd.niedersachsen.de](https://www.lfd.niedersachsen.de/)
+{: .address }
+
+You may also complain to the supervisory authority where you live or work.
 
 ## About the software
 

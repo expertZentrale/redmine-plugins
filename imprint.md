@@ -7,55 +7,48 @@ title: Imprint
 description: Legal notice and provider identification for this website.
 ---
 
-<div class="callout" markdown="1">
-**This page is a scaffold, not a finished legal notice.** Every field marked
-`TODO` has to be filled in from the company register by someone authorised to
-do it — these details are legally binding under § 5 DDG and must not be
-guessed. The site should not go live on a public domain until they are.
-</div>
-
 ## Provider
 
 Information pursuant to § 5 DDG (Digitale-Dienste-Gesetz):
 
-TODO — legal company name
-TODO — street and number
-TODO — postcode and town
+expert Warenvertrieb GmbH
+Bayernstr. 4
+30855 Langenhagen
 Germany
 {: .address }
 
 ## Represented by
 
-TODO — managing director(s) / authorised representative(s)
+Managing directors: Stefan Müller, Christoph Komor, Holger Pöppe, Daniela Schreckling
 
 ## Contact
 
-Email: TODO — contact address
-Telephone: TODO — optional
+Email: [mail@expert.de](mailto:mail@expert.de)
 
 ## Register entry
 
-Register court: TODO
-Register number: TODO — e.g. HRB 12345
+Register court: Amtsgericht Hannover
+Register number: HRB 543
+{: .address }
 
 ## VAT identification number
 
-VAT ID pursuant to § 27 a UStG: TODO — e.g. DE123456789
+VAT ID pursuant to § 27 a UStG: DE813256340
 
 ## Responsible for content
 
 Pursuant to § 18 (2) MStV:
 
-TODO — name
-TODO — address (if different from above)
+Dennis Bühring
+expert Warenvertrieb GmbH
+Bayernstr. 4
+30855 Langenhagen
+{: .address }
 
-## Dispute resolution
+## Consumer dispute resolution
 
-The European Commission provides a platform for online dispute resolution at
-[ec.europa.eu/consumers/odr](https://ec.europa.eu/consumers/odr/).
-
-TODO — confirm the standard statement on willingness to participate in
-consumer arbitration proceedings.
+We are neither willing nor obliged to take part in dispute resolution
+proceedings before a consumer arbitration board.
 
 ## About the content of this site
 

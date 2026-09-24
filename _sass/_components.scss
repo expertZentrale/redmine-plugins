@@ -482,6 +482,11 @@ td.no  { color: var(--ink-faint); }
   p { color: var(--ink-soft); }
 }
 
+/* ---- postal address (legal pages) ---- */
+
+/* Kramdown joins a paragraph's lines with plain newlines; keep them. */
+.address { white-space: pre-line; }
+
 /* ---- release strip ---- */
 
 .releases {
