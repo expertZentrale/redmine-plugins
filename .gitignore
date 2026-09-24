@@ -6,3 +6,4 @@ vendor/
 node_modules/
 tools/capture/shots-raw/
 tools/capture/probe.mjs
+tools/capture/prep/*.vars.json

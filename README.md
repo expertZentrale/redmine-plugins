@@ -60,6 +60,10 @@ ruby script/fetch-releases.rb
 # Screenshots: read a plugin repo's docs/screenshots/, write optimised WebP
 tools/optimise-shots.sh helpdesk ../redmine_expert_helpdesk
 
+# Capturing them: seed the plugin's demo on the screenshots stack, then
+tools/capture/prep/run.sh helpdesk       # extra demo state + ids (helpdesk, agile)
+node tools/capture/capture.mjs helpdesk --lang en
+
 # The logo family — logo.svg + PNGs per plugin, and the square site marks
 python3 tools/logo/build-logos.py
 ```

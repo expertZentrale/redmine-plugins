@@ -12,7 +12,7 @@
  * *names*, i.e. data, so its seed has a RELABEL mode instead.
  */
 import { chromium } from 'playwright';
-import { readFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, mkdirSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -48,6 +48,14 @@ if (!spec) { console.error(`unknown plugin: ${plugin}`); process.exit(1); }
 if (!spec.shots.length) { console.log(`  ${plugin}: no shots defined yet`); process.exit(0); }
 
 mkdirSync(outDir, { recursive: true });
+
+// Ids differ per seed run (the hero ticket, its contact, the mailbox), so shots
+// name them as {placeholders} and prep/run.sh <plugin> writes the values.
+const varsFile = resolve(here, 'prep', `${plugin}.vars.json`);
+const vars = existsSync(varsFile) ? JSON.parse(readFileSync(varsFile, 'utf8')) : {};
+const fill = v => (typeof v === 'string'
+  ? v.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m))
+  : JSON.parse(fill(JSON.stringify(v))));
 
 // channel:'chromium' picks the full browser build rather than the headless shell
 // Playwright uses by default. The shell ships no PDF viewer, so the PDF shot came
@@ -92,7 +100,17 @@ for (const shot of spec.shots) {
     ? await ctx.newPage() : page;
   if (shot.viewport) await target_page.setViewportSize(shot.viewport);
 
-  let url = (shot.base || cfg.baseUrl) + shot.url;
+  // A feature that calls an AI provider is shown with a canned response: the
+  // screenshots stack has no provider, and a live one would make the capture
+  // neither reproducible nor free. `json` may be keyed by language.
+  for (const m of shot.mock || []) {
+    const body = m.json && (m.json[lang] || m.json);
+    await target_page.route(fill(m.url), route => route.fulfill({
+      status: 200, contentType: 'application/json', body: JSON.stringify(fill(body)),
+    }));
+  }
+
+  let url = (shot.base || cfg.baseUrl) + fill(shot.url);
   if (shot.timeRange === 'lastWorkdayMorning') {
     const { from, to } = lastWorkdayMorning();
     url += `${url.includes('?') ? '&' : '?'}from=${from}&to=${to}`;
@@ -104,7 +122,11 @@ for (const shot of spec.shots) {
   // Some surfaces only exist after an interaction — the lightbox dialog is
   // created by the click that opens it, and its edge chevrons only fade in on
   // hover, which is exactly the behaviour worth showing.
-  for (const action of shot.actions || []) {
+  for (const raw of shot.actions || []) {
+    const action = fill(raw);
+    if (action.eval) await target_page.evaluate(action.eval);
+    if (action.fill) await target_page.fill(action.fill, action.value[lang] ?? action.value);
+    if (action.waitFor) await target_page.waitForSelector(action.waitFor, { timeout: 15000 });
     if (action.click) await target_page.click(action.click);
     if (action.hover) await target_page.hover(action.hover);
     if (action.mouse) {

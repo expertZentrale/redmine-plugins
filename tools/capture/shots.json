@@ -129,6 +129,326 @@
           "note": "inline wiki image, opened without leaving the page"
         }
       ]
+    },
+    "helpdesk": {
+      "login": {
+        "user": "screenshot-demo",
+        "password": "screenshots"
+      },
+      "prep": "tools/capture/prep/run.sh helpdesk (after the plugin's seed_screenshot_demo.rb)",
+      "shots": [
+        {
+          "file": "01-sla-dashboard",
+          "url": "/projects/screenshot/helpdesk_sla_statistics",
+          "clip": "#content",
+          "settleMs": 1500,
+          "note": "SLA statistics tab"
+        },
+        {
+          "file": "02-ai-dashboard",
+          "url": "/projects/screenshot/helpdesk_ai_statistics",
+          "clip": "#content",
+          "settleMs": 1500,
+          "note": "AI statistics tab"
+        },
+        {
+          "file": "03-contacts",
+          "url": "/projects/screenshot/helpdesk_contacts",
+          "clip": "#content",
+          "note": "Customers tab"
+        },
+        {
+          "file": "04-issue-detail",
+          "url": "/issues/{hero}",
+          "clip": "div.issue",
+          "note": "ticket head: SLA badges, mail bar, attachments with Block"
+        },
+        {
+          "file": "05-issue-sidebar",
+          "url": "/issues/{hero}",
+          "actions": [
+            {
+              "eval": "document.querySelectorAll('#sidebar-wrapper > h3').forEach(h => { if (!h.nextElementSibling || !h.nextElementSibling.classList.contains('helpdesk-sidebar-card')) { h.nextElementSibling && h.nextElementSibling.remove(); h.remove(); } }); document.querySelector('#watchers') && document.querySelector('#watchers').remove(); document.querySelector('#sidebar-switch-panel') && document.querySelector('#sidebar-switch-panel').remove(); document.querySelector('#sidebar').style.cssText += 'align-self:flex-start;min-height:0;height:auto;';"
+            }
+          ],
+          "clip": "#sidebar",
+          "note": "Customer and AI Assistant cards only"
+        },
+        {
+          "file": "06-reply",
+          "url": "/issues/{hero}/edit?hd_reply=1",
+          "actions": [
+            {
+              "waitMs": 600
+            },
+            {
+              "fill": "#issue_notes",
+              "value": {
+                "en": "Hello Mr Hoffmann,\n\nthank you — we are looking into it and will get back to you shortly.\n\nKind regards",
+                "de": "Hallo Herr Hoffmann,\n\nvielen Dank – wir sehen uns das an und melden uns in Kürze bei Ihnen.\n\nViele Grüße"
+              }
+            },
+            {
+              "waitMs": 300
+            }
+          ],
+          "clip": "#hd-outgoing",
+          "note": "armed reply: hazard border, original-recipients offer, attachments, signature after the body"
+        },
+        {
+          "file": "07-project-settings",
+          "url": "/projects/screenshot/settings/expert_helpdesk",
+          "clip": "#tab-content-expert_helpdesk",
+          "note": "project settings tab"
+        },
+        {
+          "file": "08-mailbox-form",
+          "url": "/projects/screenshot/helpdesk_mailboxes/{mailbox}/edit",
+          "clip": "#content",
+          "note": "mailbox form"
+        },
+        {
+          "file": "09-issue-list",
+          "url": "/projects/screenshot/issues?set_filter=1&f[]=status_id&op[status_id]=o&c[]=status&c[]=priority&c[]=subject&c[]=helpdesk_kunde&c[]=helpdesk_sla_reaction&c[]=helpdesk_sla_solution&sort=id:desc&per_page=25",
+          "clip": "table.list.issues",
+          "note": "issue list with customer and SLA columns"
+        },
+        {
+          "file": "10-contact-profile",
+          "url": "/projects/screenshot/helpdesk_contacts/{contact}/edit",
+          "clip": "#content",
+          "note": "customer profile with previous tickets"
+        },
+        {
+          "file": "11-ticket-dashboard",
+          "url": "/projects/screenshot/helpdesk_ticket_statistics",
+          "clip": "#content",
+          "settleMs": 1500,
+          "note": "Ticket statistics tab"
+        },
+        {
+          "file": "12-ai-answer-draft",
+          "url": "/issues/{hero}/edit?hd_reply=1",
+          "mock": [
+            {
+              "url": "**/issues/{hero}/helpdesk_note_content",
+              "json": {
+                "en": {
+                  "content": "Hello Mr Hoffmann,\n\nthank you for your message. After the latest Windows update the scanner driver is often replaced by a generic one, which is why the device is no longer recognised.\n\n1. Unplug the scanner and restart the computer.\n2. Install the current driver from the manufacturer's support page (\"full driver & software package\").\n3. Reconnect the scanner directly to the computer rather than through a USB hub.\n\nIf it still does not appear, please send us a screenshot of the Device Manager and we will take it from there.\n\nKind regards",
+                  "truncated": false,
+                  "omitted": 0,
+                  "sources": [
+                    {
+                      "issue_id": "{source1}",
+                      "score": 0.91,
+                      "url": "/issues/{source1}",
+                      "subject": "Scanner not recognised after update"
+                    },
+                    {
+                      "issue_id": "{source2}",
+                      "score": 0.84,
+                      "url": "/issues/{source2}",
+                      "subject": "Scanner not recognised after update"
+                    }
+                  ]
+                },
+                "de": {
+                  "content": "Hallo Herr Hoffmann,\n\nvielen Dank für Ihre Nachricht. Nach dem letzten Windows-Update wird der Scannertreiber häufig durch einen allgemeinen Treiber ersetzt – deshalb wird das Gerät nicht mehr erkannt.\n\n1. Trennen Sie den Scanner und starten Sie den Rechner neu.\n2. Installieren Sie den aktuellen Treiber von der Support-Seite des Herstellers („Vollständiges Treiber- & Softwarepaket“).\n3. Schließen Sie den Scanner direkt am Rechner an, nicht über einen USB-Hub.\n\nFalls er danach weiterhin nicht erscheint, schicken Sie uns bitte einen Screenshot des Geräte-Managers – wir kümmern uns dann darum.\n\nViele Grüße",
+                  "truncated": false,
+                  "omitted": 0,
+                  "sources": [
+                    {
+                      "issue_id": "{source1}",
+                      "score": 0.91,
+                      "url": "/issues/{source1}",
+                      "subject": "Scanner not recognised after update"
+                    },
+                    {
+                      "issue_id": "{source2}",
+                      "score": 0.84,
+                      "url": "/issues/{source2}",
+                      "subject": "Scanner not recognised after update"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "waitMs": 600
+            },
+            {
+              "click": ".jstb_hd_aidraft"
+            },
+            {
+              "waitFor": ".hd-tb-menu .hd-tb-item"
+            },
+            {
+              "click": ".hd-tb-menu .hd-tb-item >> nth=0"
+            },
+            {
+              "waitFor": "#hd-tb-ai-warning:visible"
+            },
+            {
+              "eval": "const t = document.getElementById('issue_notes'); t.style.height = (t.scrollHeight + 8) + 'px'; t.scrollTop = 0;"
+            },
+            {
+              "waitMs": 300
+            }
+          ],
+          "clip": "#add_notes",
+          "note": "AI answer draft in the armed reply, with its sources and the unedited-draft warning; the provider call is mocked"
+        },
+        {
+          "file": "13-attachment-block",
+          "url": "/issues/{hero}",
+          "actions": [
+            {
+              "hover": ".hd-blacklist-attachment >> nth=0"
+            },
+            {
+              "waitMs": 200
+            }
+          ],
+          "clip": "div.issue div.attachments",
+          "note": "signature logos and icons next to a real screenshot, each with a Block button"
+        }
+      ]
+    },
+    "agile": {
+      "login": {
+        "user": "screenshot-agile-demo",
+        "password": "screenshots"
+      },
+      "prep": "tools/capture/prep/run.sh agile (after the plugin's seed_screenshot_demo.rb); for --lang de run the seed with RELABEL=de first, and RELABEL=en afterwards",
+      "shots": [
+        {
+          "file": "01-board",
+          "url": "/projects/screenshot-agile/expert_agile/board?query_id=8",
+          "viewport": {
+            "width": 1720,
+            "height": 1000
+          },
+          "clip": "#content",
+          "note": "saved sprint board",
+          "actions": [
+            {
+              "eval": "document.getElementById('main').classList.add('nosidebar');"
+            }
+          ]
+        },
+        {
+          "file": "02-board-swimlanes",
+          "url": "/projects/screenshot-agile/expert_agile/board?query_id=9",
+          "viewport": {
+            "width": 1720,
+            "height": 1000
+          },
+          "clip": "#content",
+          "note": "one swimlane per assignee",
+          "actions": [
+            {
+              "eval": "document.getElementById('main').classList.add('nosidebar');"
+            }
+          ]
+        },
+        {
+          "file": "03-backlog",
+          "url": "/projects/screenshot-agile/expert_agile/backlog",
+          "viewport": {
+            "width": 1720,
+            "height": 1000
+          },
+          "clip": "#content",
+          "note": "backlog planner: backlog next to the sprints",
+          "actions": [
+            {
+              "eval": "document.getElementById('main').classList.add('nosidebar');"
+            }
+          ]
+        },
+        {
+          "file": "04-sprints",
+          "url": "/projects/screenshot-agile/settings/expert_agile_sprints",
+          "clip": "#content",
+          "note": "project settings, Sprints tab"
+        },
+        {
+          "file": "05-story-points",
+          "url": "/issues/{story}/edit",
+          "clip": "#all_attributes",
+          "note": "issue form with the Story points and Sprint fields"
+        },
+        {
+          "file": "06-chart-burndown",
+          "url": "/projects/screenshot-agile/expert_agile/charts?query_id=11",
+          "clip": "#content",
+          "settleMs": 1500,
+          "note": "burndown of the active sprint"
+        },
+        {
+          "file": "07-chart-velocity",
+          "url": "/projects/screenshot-agile/expert_agile/charts?query_id=12",
+          "clip": "#content",
+          "settleMs": 1500,
+          "note": "velocity"
+        },
+        {
+          "file": "08-chart-cumulative-flow",
+          "url": "/projects/screenshot-agile/expert_agile/charts?query_id=13",
+          "clip": "#content",
+          "settleMs": 1500,
+          "note": "cumulative flow"
+        },
+        {
+          "file": "09-card-colors",
+          "url": "/expert_agile/colors/issue_status",
+          "actions": [
+            {
+              "eval": "const rows = [...document.querySelectorAll('#content tr')].filter(r => r.querySelector('.ea-color-input')); const first = rows.findIndex(r => r.querySelector('.ea-color-input').value); rows.slice(0, first).forEach(r => r.remove());"
+            },
+            {
+              "click": ".ea-color-input >> nth=2"
+            },
+            {
+              "waitMs": 500
+            }
+          ],
+          "note": "status colours with the Coloris picker open. Rows before the first coloured one are Redmine's default statuses, which only exist because the screenshots stack is shared with the other plugins' demos; they are removed. The picker overlays #content, so clipping to it keeps the picker",
+          "clip": "#content"
+        },
+        {
+          "file": "10-settings",
+          "url": "/settings/plugin/redmine_expert_agile",
+          "clip": "#content",
+          "note": "global plugin settings"
+        },
+        {
+          "file": "11-sprint-board",
+          "url": "/projects/screenshot-agile/expert_agile/board?query_id=8",
+          "viewport": {
+            "width": 1720,
+            "height": 1000
+          },
+          "actions": [
+            {
+              "eval": "document.getElementById('main').classList.add('nosidebar');"
+            },
+            {
+              "click": "#options legend"
+            },
+            {
+              "eval": "const s = document.getElementById('sprint_id'); s.value = 'active'; s.dispatchEvent(new Event('change', { bubbles: true }));"
+            },
+            {
+              "waitMs": 300
+            }
+          ],
+          "clip": "#content",
+          "note": "board options open on the Sprint selector: Active sprint follows whichever sprint is running"
+        }
+      ]
     }
   }
 }
