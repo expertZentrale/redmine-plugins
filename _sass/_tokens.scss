@@ -13,6 +13,9 @@
   --brand-deep:   #cd291f;
   --brand-tint:   #f58c66;
   --brand-wash:   #fff3ec;
+  // The expert logo's own orange, sampled from the official PNG. Only the
+  // logo uses it; it reads on both backgrounds, so dark mode keeps it.
+  --logo:         #ee7f01;
 
   --ink:          #26282a;
   --ink-soft:     #5a5e62;

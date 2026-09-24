@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <!-- The expert logo; keep in sync with _includes/expert-logo.svg. -->
-  <circle cx="50" cy="50" r="48.75" fill="none" stroke="#F04C00" stroke-width="2.5"/>
-  <g fill="#F04C00">
+  <circle cx="50" cy="50" r="48.75" fill="none" stroke="#EE7F01" stroke-width="2.5"/>
+  <g fill="#EE7F01">
     <polygon points="50,7 53.96,14 46.04,14"/>
     <polygon points="44.68,16.4 55.32,16.4 57.95,21.05 42.05,21.05"/>
     <polygon points="40.75,23.35 59.25,23.35 61.86,27.95 38.14,27.95"/>
