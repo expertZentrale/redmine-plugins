@@ -54,12 +54,28 @@ features:
       mit dem Projekt teilen, und das Board eines Oberprojekts trägt die Tickets
       seiner Unterprojekte mit.
 
+  - kicker: Farben
+    title: Jede Farbe — nach Tracker, Status, Priorität oder Projekt
+    shot: 09-card-colors
+    caption: >-
+      Farben der Agile-Karten für Ticketstatus, mit Reitern für Projekt, Tracker
+      und Priorität. Der Farbwähler ist auf „In Arbeit“ geöffnet: eine
+      Farbfläche, ein Farbton-Regler, der Hex-Wert #e08a1e und achtzehn
+      Palettenfarben.
+    body: >-
+      Karten nehmen ihre Farbe vom Tracker, vom Status, von der Priorität oder
+      vom Projekt, und Spaltenköpfe können die Statusfarbe übernehmen. Jede Farbe
+      geht — Farbfläche, Farbton-Regler und Hex-Feld, dazu die achtzehn
+      Palettentöne als Vorschläge —, und der Hintergrund der Karte wird daraus
+      abgeleitet und bleibt hell, egal was gewählt wurde. Der Farbwähler Coloris
+      liegt im Plugin, zur Laufzeit wird nichts nachgeladen.
+
   - kicker: Schätzung
     title: Story Points dort, wo Redmine sie erwartet
     shot: 05-story-points
     caption: >-
       Ticketformular mit Redmines eigenen Attributfeldern und darunter zwei
-      Feldern des Plugins: ein Auswahlfeld Story Points mit dem Wert 5 und ein
+      Feldern des Plugins: ein Auswahlfeld Story Points mit dem Wert 2 und ein
       Auswahlfeld Sprint mit Sprint 24.
     body: >-
       Gespeichert je Ticket in einer eigenen Tabelle, statt in ein
@@ -84,6 +100,21 @@ features:
       Zuordnung seiner Tickets auf — gelöscht wird nie. Redmines eigene Versionen
       bleiben für die Releaseplanung daneben nutzbar.
 
+  - kicker: Sprint-Boards
+    title: Ein Board, das dem laufenden Sprint folgt
+    shot: 11-sprint-board
+    caption: >-
+      Geöffnete Board-Optionen über dem Sprint-Board: Kartenfelder,
+      Darstellung mit der Sprint-Auswahl „Aktiver Sprint (automatisch)“ und die
+      Statusspalten mit ihren WIP-Limits.
+    body: >-
+      Jedes Board lässt sich in seinen Optionen auf einen Sprint eingrenzen —
+      oder mit `sprint_id` in der URL. **Aktiver Sprint** folgt dem Sprint, der
+      gerade läuft; ein gespeichertes Sprint-Board stimmt damit auch nach dem
+      Start der nächsten Iteration noch. Spalten, Zähler und Story-Point-Summen
+      umfassen dann nur diesen Sprint, und ein geschlossener Sprint lässt sich für
+      sein Review weiterhin öffnen.
+
   - kicker: Planung
     title: Ein Backlog, aus dem sich wirklich etwas herausziehen lässt
     shot: 03-backlog
@@ -102,10 +133,9 @@ features:
     title: Fünf Diagramme, aus dem was tatsächlich passiert ist
     shot: 06-chart-burndown
     caption: >-
-      Burndown über einen Sprint in Story Points: die Restlinie fällt von 200
+      Burndown über einen Sprint in Story Points: die Restlinie fällt von rund 165
       Punkten und endet heute, darunter eine gestrichelte Ideallinie, die zum
-      Sprintende auf null läuft. Die Seitenleiste listet gespeicherte Diagramme
-      und die Sprints des Projekts.
+      Sprintende auf null läuft.
     body: >-
       Burndown, Burnup, Velocity, Cumulative Flow und Durchlaufzeit — in Tickets,
       Stunden oder Story Points, nach Tag, Woche oder Monat. Der Verlauf wird aus

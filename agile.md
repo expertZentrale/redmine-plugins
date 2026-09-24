@@ -45,11 +45,24 @@ features:
       story-point total. Boards can be saved privately or shared with the
       project, and a parent project's board carries its subprojects' issues.
 
+  - kicker: Colours
+    title: Any colour, by tracker, status, priority or project
+    shot: 09-card-colors
+    caption: >-
+      Agile card colours for issue statuses, with tabs for project, tracker and priority. The colour picker is open on In Progress: a colour area, a hue slider, the hex value #e08a1e, and eighteen palette swatches.
+    body: >-
+      Cards take their colour from the tracker, the status, the priority or the
+      project, and column headers can take the status colour. Any colour works —
+      a colour area, a hue slider and a hex field, with the eighteen palette
+      shades as swatches — and the card's background tint is derived from it and
+      kept light, whatever was picked. The picker, Coloris, is bundled with the
+      plugin, so nothing is fetched at runtime.
+
   - kicker: Estimates
     title: Story points where Redmine expects them
     shot: 05-story-points
     caption: >-
-      Issue form showing Redmine's own attribute fields above two added by the plugin: a Story points dropdown set to 5, and a Sprint dropdown set to Sprint 24.
+      Issue form showing Redmine's own attribute fields above two added by the plugin: a Story points dropdown set to 2, and a Sprint dropdown set to Sprint 24.
     body: >-
       Stored per issue in the plugin's own table rather than smuggled into a
       custom field, offered as a configurable value list (modified Fibonacci by
@@ -70,6 +83,18 @@ features:
       Deleting a sprint unassigns its issues — it never deletes them. Redmine's
       own versions stay usable for release planning alongside.
 
+  - kicker: Sprint boards
+    title: A board that follows the running sprint
+    shot: 11-sprint-board
+    caption: >-
+      Board options opened above the sprint board: card fields, appearance settings with the Sprint selector set to "Active sprint (follows automatically)", and the status columns with their WIP limits.
+    body: >-
+      Narrow any board to one sprint from its options, or with `sprint_id` in
+      the URL. **Active sprint** follows whichever sprint is running, so a saved
+      sprint board is still right after the next iteration starts. Columns,
+      counts and story-point totals then cover only that sprint, and a closed
+      sprint can still be opened for its review.
+
   - kicker: Planning
     title: A backlog you can actually drag things out of
     shot: 03-backlog
@@ -86,7 +111,7 @@ features:
     title: Five charts, from what actually happened
     shot: 06-chart-burndown
     caption: >-
-      Burndown over a sprint in story points: the remaining line descends from 200 points and stops at today, above a dashed ideal line falling to zero at the sprint end. The sidebar lists saved charts and the project sprints.
+      Burndown over a sprint in story points: the remaining line descends from about 165 points and stops at today, above a dashed ideal line falling to zero at the sprint end.
     body: >-
       Burndown, burnup, velocity, cumulative flow and cycle time — in issues,
       hours or story points, by day, week or month. History is replayed from the

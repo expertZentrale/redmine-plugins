@@ -26,8 +26,10 @@ features:
     title: Eine Mail kommt an, ein Ticket entsteht
     shot: 04-issue-detail
     caption: >-
-      Ticketseite mit Helpdesk-Infozeile: Absendername und -adresse,
-      Ursprungspostfach sowie zwei grüne SLA-Chips für Reaktions- und Lösungszeit.
+      Ticketseite mit Helpdesk-Infozeile: ein SLA-Chip für die Reaktionszeit
+      (erfüllt) und einer für die Lösungszeit (fällig), Name und Adresse des
+      Absenders und die Dateien der Mail — ein Signaturlogo, zwei Icons und der
+      Screenshot des Kunden, jede mit einer Schaltfläche „Sperren“.
     body: >-
       Jedes Projekt zeigt auf eigene Postfächer und legt fest, was neue Tickets
       bekommen: Tracker, Priorität, Status — und was mit Absendern geschieht, die
@@ -41,8 +43,10 @@ features:
     title: Dem Kunden vom Ticket aus antworten
     shot: 06-reply
     caption: >-
-      Antwort-Panel im Bearbeiten-Formular: Auswahlfeld „Als E-Mail an Kunden
-      senden“ mit Empfänger, An/CC/BCC-Feldern und einer Vorschau der Signatur.
+      Die scharf geschaltete Kundenantwort im Bearbeiten-Formular: ein Block mit
+      diagonalem Warnrahmen, darin Empfänger, An/CC/BCC-Felder mit dem Angebot
+      „Originalempfänger“, die Dateien des Tickets zum Anhängen, die Notiz und
+      danach die Signaturvorschau.
     body: >-
       Das normale Redmine-Notizfeld, dazu ein Panel, das es als echte Mail über
       das Postfach selbst versendet — eine Kopie landet in „Gesendet“, und das
@@ -50,7 +54,44 @@ features:
       Originalmail oder den ganzen Verlauf (private Notizen niemals), fügen Sie
       eine gespeicherte Antwortvorlage mit bereits aufgelösten Makros ein, ziehen
       Sie Inline-Bilder hinein, und lassen Sie An/CC/BCC aus den Projektkontakten
-      vervollständigen.
+      vervollständigen. Wen der Kunde in An oder Cc hatte, ist einen Klick
+      entfernt. Solange die Antwort eingeschaltet ist, trägt der ganze Block einen
+      Warnrahmen in einer Farbe Ihrer Wahl — niemand hält ihn für eine interne
+      Notiz.
+
+  - kicker: KI-Entwürfe
+    title: Eine erste Antwort aus Tickets, die Sie schon gelöst haben
+    shot: 12-ai-answer-draft
+    caption: >-
+      Ein KI-Antwortentwurf in der scharf geschalteten Kundenantwort: nummerierte
+      Schritte für einen Scanner, der nicht mehr erkannt wird, eine Zeile
+      „Grundlage“ mit zwei gelösten Tickets und ihrer Relevanz, und der Hinweis,
+      dass der Text von einer KI stammt und vor dem Senden zu prüfen ist.
+    body: >-
+      Eine Schaltfläche in der Notiz-Werkzeugleiste entwirft die Antwort aus der
+      Wissensdatenbank des Projekts — als normale Antwort, als
+      Schritt-für-Schritt-Anleitung, kurz und knapp oder als höfliche Nachfrage
+      nach den fehlenden Angaben. Der Entwurf nennt die gelösten Tickets, auf
+      denen er beruht, und ohne Treffer über der Relevanzschwelle verweigert er,
+      statt zu raten. Wer einen unbearbeiteten Entwurf senden will, wird vorher
+      gefragt. Ein optionaler Cross-Encoder sortiert die Treffer der
+      Wissensdatenbank vorher neu. Standardmäßig aus, wie jede KI-Funktion hier.
+
+  - kicker: Anhänge
+    title: Das Signaturlogo einmal sperren, nicht auf jedem Ticket löschen
+    shot: 13-attachment-block
+    caption: >-
+      Die Dateien eines Tickets: ein Signaturlogo, zwei Social-Media-Icons und
+      der eigentliche Screenshot des Kunden, jede Zeile mit einer Schaltfläche
+      „Sperren“; der Mauszeiger steht auf der ersten.
+    body: >-
+      Mailprogramme legen jedes Signaturlogo, jedes Icon und jedes Zählpixel als
+      Anhang ab — der eine Screenshot, auf den es ankommt, geht darin unter.
+      **Sperren** entfernt eine Datei von allen Tickets des Projekts — nachdem
+      es Ihnen gesagt hat, wie viele Kopien das sind — und hält sie ab dann aus
+      eingehenden Mails heraus. Verglichen wird der Inhalt (SHA-256), nicht der
+      Name: Outlook nennt jedes eingebettete Bild `image001.png`, und eine
+      Sperre nach Namen würde früher oder später einen echten Screenshot treffen.
 
   - kicker: Jeder Anbieter
     title: Microsoft 365 — oder jeder IMAP-Server

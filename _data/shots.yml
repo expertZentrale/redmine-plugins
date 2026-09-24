@@ -2,36 +2,44 @@
 # Real dimensions of the 1x WebP files, so every <img> reserves the right box.
 agile:
   de:
-    01-board: {w: 1440, h: 1165}
-    02-board-swimlanes: {w: 1440, h: 1681}
-    03-backlog: {w: 1440, h: 1279}
-    04-sprints: {w: 1440, h: 317}
-    05-story-points: {w: 1440, h: 401}
-    06-chart-burndown: {w: 1440, h: 591}
+    01-board: {w: 1440, h: 1156}
+    02-board-swimlanes: {w: 1440, h: 1674}
+    03-backlog: {w: 1440, h: 839}
+    04-sprints: {w: 1440, h: 298}
+    05-story-points: {w: 1440, h: 438}
+    06-chart-burndown: {w: 1440, h: 700}
+    09-card-colors: {w: 1440, h: 798}
+    11-sprint-board: {w: 1440, h: 1364}
   en:
-    01-board: {w: 1440, h: 1165}
-    02-board-swimlanes: {w: 1440, h: 1681}
-    03-backlog: {w: 1440, h: 1279}
-    04-sprints: {w: 1440, h: 317}
-    05-story-points: {w: 1440, h: 401}
-    06-chart-burndown: {w: 1440, h: 591}
+    01-board: {w: 1440, h: 1156}
+    02-board-swimlanes: {w: 1440, h: 1674}
+    03-backlog: {w: 1440, h: 839}
+    04-sprints: {w: 1440, h: 298}
+    05-story-points: {w: 1440, h: 440}
+    06-chart-burndown: {w: 1440, h: 700}
+    09-card-colors: {w: 1440, h: 798}
+    11-sprint-board: {w: 1440, h: 1364}
 helpdesk:
   de:
-    01-sla-dashboard: {w: 1440, h: 1518}
-    02-ai-dashboard: {w: 1440, h: 2056}
-    03-contacts: {w: 1440, h: 868}
-    04-issue-detail: {w: 1440, h: 736}
-    06-reply: {w: 1440, h: 357}
-    08-mailbox-form: {w: 1440, h: 2131}
-    11-ticket-dashboard: {w: 1280, h: 3191}
+    01-sla-dashboard: {w: 1440, h: 1501}
+    02-ai-dashboard: {w: 1440, h: 2018}
+    03-contacts: {w: 1440, h: 854}
+    04-issue-detail: {w: 1440, h: 1055}
+    06-reply: {w: 1440, h: 612}
+    08-mailbox-form: {w: 1440, h: 2755}
+    11-ticket-dashboard: {w: 1440, h: 2960}
+    12-ai-answer-draft: {w: 1440, h: 779}
+    13-attachment-block: {w: 1440, h: 255}
   en:
-    01-sla-dashboard: {w: 1440, h: 1518}
-    02-ai-dashboard: {w: 1440, h: 2056}
-    03-contacts: {w: 1440, h: 868}
-    04-issue-detail: {w: 1440, h: 736}
-    06-reply: {w: 1440, h: 357}
-    08-mailbox-form: {w: 1440, h: 2085}
-    11-ticket-dashboard: {w: 1280, h: 3191}
+    01-sla-dashboard: {w: 1440, h: 1500}
+    02-ai-dashboard: {w: 1440, h: 2018}
+    03-contacts: {w: 1440, h: 853}
+    04-issue-detail: {w: 1440, h: 1055}
+    06-reply: {w: 1440, h: 612}
+    08-mailbox-form: {w: 1440, h: 2711}
+    11-ticket-dashboard: {w: 1440, h: 2963}
+    12-ai-answer-draft: {w: 1440, h: 779}
+    13-attachment-block: {w: 1440, h: 255}
 lightbox:
   de:
     01-image-modal: {w: 1440, h: 900}
