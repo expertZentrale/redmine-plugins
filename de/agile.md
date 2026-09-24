@@ -135,6 +135,7 @@ install:
     einschalten.
 ---
 
-Keine zusätzlichen Gems. Chart.js liegt im Plugin, und Drag-and-drop nutzt das
+Keine zusätzlichen Gems. Chart.js und der Farbwähler Coloris liegen im Plugin,
+und Drag-and-drop nutzt das
 jQuery UI, das Redmine ohnehin mitbringt — zur Laufzeit wird also nichts
 nachgeladen. Läuft auf MariaDB, MySQL und PostgreSQL.

@@ -54,8 +54,9 @@ uns dabei gesetzt haben, sollten Sie kennen, bevor Sie etwas installieren:
   Push gegen Redmine 5.1, 6.0, 6.1 und 7.0, und jedes Plugin wird zusätzlich in
   den offiziellen `redmine`-Docker-Images derselben Versionen gestartet.
 - **Zur Laufzeit wird nichts nachgeladen.** Kein CDN, keine externe Schrift, kein
-  Analyse-Pixel. Chart.js liegt in den Plugins, die Diagramme zeichnen; alles
-  andere ist die Ruby-Standardbibliothek und das, was Redmine ohnehin mitbringt.
+  Analyse-Pixel. Chart.js liegt in den Plugins, die Diagramme zeichnen, und Agile
+  bringt den Farbwähler Coloris mit; alles andere ist die Ruby-Standardbibliothek
+  und das, was Redmine ohnehin mitbringt.
 - **Optional heißt aus.** Die KI-Funktionen, die Wissensdatenbank und die
   Phishing-Prüfung sind im Auslieferungszustand deaktiviert. Sie einzuschalten
   ist eine bewusste Entscheidung — und jede davon scheitert sicher: eine kaputte

@@ -114,6 +114,7 @@ install:
     off until you turn them on in the plugin settings.
 ---
 
-No additional gems. Chart.js is vendored with the plugin and drag and drop uses
+No additional gems. Chart.js and the Coloris colour picker are vendored with the
+plugin, and drag and drop uses
 the jQuery UI that Redmine already ships, so nothing is fetched at runtime.
 Works on MariaDB, MySQL and PostgreSQL.

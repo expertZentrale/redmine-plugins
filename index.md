@@ -51,8 +51,9 @@ worth knowing before you install anything:
   6.0, 6.1 and 7.0 on every push, and each plugin is additionally booted inside
   the official `redmine` Docker images for the same versions.
 - **Nothing is fetched at runtime.** No CDN, no external font, no analytics
-  beacon. Chart.js is vendored into the plugins that draw charts; everything
-  else is the Ruby standard library and what Redmine already ships.
+  beacon. Chart.js is vendored into the plugins that draw charts, and Agile
+  vendors the Coloris colour picker; everything else is the Ruby standard
+  library and what Redmine already ships.
 - **Optional means off.** The AI features, the knowledge base and the phishing
   check all ship disabled. Turning one on is a deliberate act, and each one
   fails closed — a broken model response never mails your customer.

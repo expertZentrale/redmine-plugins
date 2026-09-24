@@ -22,7 +22,7 @@
   databases_note: true
   gems: [base64]
   gems_optional: [pdf-reader, pg]
-  migrations: 50
+  migrations: 60
   vendored:
     - {name: 'Chart.js', version: '4.4.6', license: MIT}
     - {name: 'chartjs-plugin-datalabels', version: '2.2.0', license: MIT}
@@ -45,9 +45,10 @@
   databases_note: false
   gems: []
   gems_optional: []
-  migrations: 4
+  migrations: 5
   vendored:
-    - {name: 'Chart.js', version: '4.4.6', license: MIT}
+    - {name: 'Chart.js', version: '4.4.7', license: MIT}
+    - {name: 'Coloris', version: '0.25.0', license: MIT}
   has_api: true
   has_settings: true
   shots_lang: true
