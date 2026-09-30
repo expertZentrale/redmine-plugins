@@ -70,23 +70,36 @@ features:
       that links to an attachment, because detection keys only on the shape of
       attachment URLs rather than on a list of controllers we happened to think of.
 
+  - kicker: Inline images
+    title: Long tickets stay readable
+    body: >-
+      A full-size screenshot pasted into an issue, a note or a wiki page can
+      push everything after it off the screen. An optional maximum width and/or
+      height for inline attachment images keeps them in check; a click still
+      opens the full-size picture in the lightbox. Set it globally in the plugin
+      settings, or override it per project in the *Image preview* tab of the
+      project settings, which anyone allowed to edit the project can reach.
+      Blank means no limit and is the default, so an upgrade changes nothing
+      until you set one. External images are left alone, because the lightbox
+      cannot open them either.
+
 why:
   - "**Zero dependencies.** Vanilla JavaScript and a native `<dialog>`, so `Esc`, focus trapping and the backdrop come from the browser. No jQuery, no Fancybox, no build step, no CDN request."
   - "**No view override and no controller patch.** It keys on URL shapes that have been stable across many Redmine majors, not on core's markup, CSS classes or icon fonts — which is exactly what broke its predecessor."
-  - "**Zero configuration.** No migrations, no settings, no permissions."
+  - "**Nothing to configure unless you want to.** No module to enable, no permissions to grant. The only setting is the optional size limit for inline images, and it starts out blank."
   - "**It degrades to nothing.** On a browser without `<dialog>` the plugin stays inert and attachment links navigate normally."
   - "**The one server endpoint is deliberately narrow.** It serves a file inline only if the extension is on a fixed allowlist, sends `X-Content-Type-Options: nosniff` with a type taken from that allowlist rather than the upload's own metadata, and checks core's `Attachment#visible?` — so it grants nothing that the normal download route would not."
 
 install:
   step1: "Download the release archive:"
   step2: "Unpack it into your Redmine's `plugins/` directory:"
-  step3: ""
-  step4: "Restart Redmine. There is nothing else to do — no module to enable, no permission to grant, no setting to configure."
+  step3: "Run the migration:"
+  step4: "Restart Redmine. The lightbox works straight away — no module to enable, no permission to grant. A size limit for inline images is optional, under *Administration → Plugins → Configure*."
   note: >-
-    No migrations, so there is no migrate step and nothing to roll back. If you
-    are replacing `redmine_x_lightbox2` or `redmine_lightbox2`, remove it first
+    The one migration only creates the table for per-project image size
+    overrides; the lightbox itself stores nothing. If you are replacing `redmine_x_lightbox2` or `redmine_lightbox2`, remove it first
     — two lightboxes on one page will both try to handle the click.
 ---
 
-No gems, no migrations, no settings, no permissions. Works on any database,
-because it does not add one.
+No gems, no permissions, one optional setting and one small table for the
+per-project image size. Works on MariaDB, MySQL and PostgreSQL.

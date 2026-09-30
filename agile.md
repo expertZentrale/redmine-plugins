@@ -27,22 +27,26 @@ features:
     caption: >-
       Agile board with five status columns — To do, In Progress, a merged Dev header spanning the Review and Test sub-columns, and Done. Each header carries its card count and WIP limit; Review is flagged for holding five cards against a limit of four.
     body: >-
-      Drag a card to change its status. Columns come from the statuses you
-      already have, with optional advisory WIP limits that flag an overloaded
+      Drag a card to change its status. The moment you pick it up, every
+      column shows whether your workflow lets this card in — green where it may
+      go, striped where it may not — from the same check the server enforces
+      the move with, so a blocked column simply does not take the drop.
+      Columns come from the statuses you already have, with optional advisory WIP limits that flag an overloaded
       column without ever blocking a move. Statuses sharing a `Prefix:` naming
       convention merge under one header. Cards show whichever fields you pick —
       assignee with avatar, story points or estimated hours, percent done, a
       description excerpt, and any query column including custom fields.
 
   - kicker: Swimlanes
-    title: One lane per person, or per anything else
+    title: One lane per person, tracker or version
     shot: 02-board-swimlanes
     caption: >-
       The same board grouped into swimlanes by assignee: one labelled band per team member plus a band for unassigned issues, each spanning all five status columns.
     body: >-
-      Any field the query can group by becomes a horizontal lane — assignee,
-      tracker, priority, category — each with its own issue count and
-      story-point total. Boards can be saved privately or shared with the
+      Project, tracker, status, priority, author, assignee, category or target
+      version becomes a horizontal lane, each with its own issue count and
+      story-point total. Those are the fields a team actually splits its work
+      by; percent done, dates and the private flag are not offered. Boards can be saved privately or shared with the
       project, and a parent project's board carries its subprojects' issues.
 
   - kicker: Colours
@@ -77,11 +81,15 @@ features:
       Sprints tab in the project settings listing five sprints with status, start and due date: one active, one open, and three closed.
     body: >-
       Name, description, start and end date, and an open → active → closed
-      lifecycle: activating a sprint stands the previous one down, and a sprint
-      cannot be closed while it still holds open issues. Sharing works the way
-      Redmine versions do, from "not shared" up to the whole project tree.
-      Deleting a sprint unassigns its issues — it never deletes them. Redmine's
-      own versions stay usable for release planning alongside.
+      lifecycle: activating a sprint stands the previous one down, a sprint
+      cannot be closed while it still holds open issues, and a closed sprint
+      takes no new ones, so its burndown and velocity stay what they were.
+      Sharing works the way Redmine versions do, with the same rules on who may
+      share how far: the whole project tree takes a sprint manager of the root
+      project, all projects takes an administrator. Deleting a sprint unassigns
+      its issues — it never deletes them — and a shared sprint that other
+      projects still plan into cannot be deleted at all. Redmine's own versions
+      stay usable for release planning alongside.
 
   - kicker: Sprint boards
     title: A board that follows the running sprint
@@ -124,14 +132,15 @@ why:
   - "**Board order is computed on the server** as a fractional rank. A move sends only the dragged card and its two neighbours and writes one row. Browser-side re-indexing of a whole column corrupts order under concurrent drags and silently reorders cards paginated out of view."
   - "**Chart history is reconstructed in a single pass** over one journal query, then cached — not by re-scanning every issue's journals once per date bucket."
   - "**No inline JavaScript.** Views render markup and data crosses into the browser through a JSON island, so the board works under a `script-src 'self'` content security policy."
-  - "**Workflow refusals tell you why.** A move your workflow forbids names the tracker and both statuses, lists the transitions that *are* open, and offers admins a link straight to that tracker's workflow."
+  - "**Workflow limits show before the drop, and refusals say why.** Blocked columns are marked while you drag. What the workflow cannot know in advance — a field the new status requires, say — is refused after the drop with the tracker and both statuses named, the transitions that *are* open listed, and a link for admins straight to that tracker's workflow."
+  - "**Agile rights are Redmine's rights.** A drag that changes a status needs the same permission the issue form needs for it, story-point totals count only issues the reader may see, and publishing a global board, chart or backlog is reserved for administrators, as it is for queries in core."
   - "**The REST API writes, not just reads** — story points and sprint assignment are both writable, and sprints have full CRUD."
 
 install:
   step1: "Download the release archive:"
   step2: "Unpack it into your Redmine's `plugins/` directory:"
   step3: "Run the migrations:"
-  step4: "Restart Redmine, then enable the **expert Agile** module on a project. The backlog planner is a second module, **expert Agile Backlog**, so you can hand it out separately."
+  step4: "Restart Redmine, then enable the **expert Agile** module on a project. The backlog planner is a second module, **expert Agile Backlog**, so you can hand it out separately; its *Manage backlog* permission is also what lets someone set an issue's sprint."
   note: >-
     It can be installed alongside another agile plugin — every class, table and
     route of ours is prefixed to avoid collisions — but **enabling two agile

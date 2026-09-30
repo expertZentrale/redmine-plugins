@@ -33,7 +33,11 @@ features:
       `.eml` attachment, and the signature logos and screenshots that mail
       clients reference as `[cid:image001.png]` are rewritten to point at the
       attachment Redmine just stored — so the ticket reads like the mail did,
-      not like a row of markers.
+      not like a row of markers. When the mail also went to other people, a
+      `To +1 | CC +2` pill next to the sender opens every To and CC address,
+      with this mailbox marked as such — so you see at a glance whether the
+      customer wrote to three support addresses at once or copied colleagues
+      in. Replies in the history carry the same pill.
 
   - kicker: Mail out
     title: Answer the customer from the ticket
@@ -146,12 +150,40 @@ features:
       is broken" ticket left out. All of it ships disabled, all of it runs in
       background jobs, and the AI paths fail closed.
 
+  - kicker: Knowledge base
+    title: Correct what the knowledge base learned
+    body: >-
+      An extracted problem and solution is only as good as the ticket it came
+      from, and fixing the text inside the vector store does not help — the
+      vector stays the one computed from the old words. A **Knowledge base** tab
+      per project lists the entries with a status filter and full-text search;
+      editing an approved entry re-embeds it on the spot. Entries can be
+      approved, rejected, written by hand for a ticket, or deleted, and the
+      project's index rebuilt in the background, on Qdrant and pgvector alike.
+      A person's verdict sticks: reopening and closing the ticket again does
+      not overwrite a corrected or rejected entry. Three permissions separate
+      reading, editing and managing.
+
+  - kicker: Switching over
+    title: Coming from RedmineUP without losing the history
+    body: >-
+      If the database still holds the tables of RedmineUP's `redmine_contacts`
+      and `redmine_contacts_helpdesk`, the plugin settings offer to import the
+      contacts with the customer link of old tickets, and to move the original
+      mails off RedmineUP's own ticket onto the Redmine issue, where this plugin
+      shows them. Both work per project — the selection page shows how many
+      contacts or mails each one would touch — and run as a background job with
+      a progress page, because a real dataset outlasts any browser timeout. For
+      a project that still works with the RedmineUP helpdesk, **Give back to
+      RedmineUP** moves its mails back.
+
 why:
   - "**Coexists with what you already run.** Two core helpers are patched by capturing the original method rather than `prepend`/`super`, specifically so the plugin survives alongside older plugins that extend the same helpers with `alias_method_chain`."
   - "**Reply matching is not reinvented.** Threading is Redmine's `MailHandler`, so it behaves the way the rest of your Redmine already does."
   - "**Nothing silently reprocesses.** Ingested mail moves to a processed folder, rejected mail to skipped, errors to failed. One broken message never aborts a fetch run."
   - "**Secrets are encrypted at rest** and write-only over the REST API — you can set a client secret, you can never read one back."
   - "**No scheduler of its own.** Fetching is a button, or an API-key-secured endpoint you point cron or a Kubernetes CronJob at. Your scheduler stays in charge."
+  - "**Upgrades without cutting a mail in half.** A maintenance switch — or one API call from your upgrade script — pauses every fetch, and a fetch already running stops before its next message. A status endpoint reports `safe_to_stop` once no pod in the cluster is inside a fetch; unprocessed mail simply waits in the mailbox."
   - "**Full REST API**, JSON and XML, following Redmine's own conventions and scoped by the permissions you already granted."
 
 install:

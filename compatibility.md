@@ -42,7 +42,7 @@ Redmine on PostgreSQL, the other three plugins are fine.
 None of these plugins pin a Redmine patch level. When you move between the
 supported majors, replace the plugin directory with the current release and run
 `rake redmine:plugins:migrate` for the plugins that have migrations
-(helpdesk and agile always; metrics once; lightbox never). Release notes call
+(helpdesk and agile always; metrics and lightbox once). Release notes call
 out any migration that needs attention.
 
 ## Installing more than one

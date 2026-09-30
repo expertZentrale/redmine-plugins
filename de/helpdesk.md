@@ -26,7 +26,7 @@ features:
     title: Eine Mail kommt an, ein Ticket entsteht
     shot: 04-issue-detail
     caption: >-
-      Ticketseite mit Helpdesk-Infozeile: ein SLA-Chip für die Reaktionszeit
+      Ticketseite mit Helpdesk-Info-Leiste: ein SLA-Chip für die Reaktionszeit
       (erfüllt) und einer für die Lösungszeit (fällig), Name und Adresse des
       Absenders und die Dateien der Mail — ein Signaturlogo, zwei Icons und der
       Screenshot des Kunden, jede mit einer Schaltfläche „Sperren“.
@@ -37,7 +37,12 @@ features:
       archiviert, und die Signaturlogos und Screenshots, die Mailprogramme als
       `[cid:image001.png]` referenzieren, werden auf den Anhang umgeschrieben,
       den Redmine gerade gespeichert hat. Das Ticket liest sich damit wie die
-      Mail — und nicht wie eine Reihe von Platzhaltern.
+      Mail — und nicht wie eine Reihe von Platzhaltern. Ging die Mail auch an
+      weitere Personen, öffnet eine Pille `An +1 | CC +2` neben dem Absender
+      alle An- und CC-Adressen, das eigene Postfach als *dieses Postfach*
+      markiert — so sehen Sie sofort, ob der Kunde gleich drei
+      Support-Adressen angeschrieben oder Kollegen in Kopie genommen hat.
+      Antworten im Verlauf tragen dieselbe Pille.
 
   - kicker: Mail raus
     title: Dem Kunden vom Ticket aus antworten
@@ -69,13 +74,13 @@ features:
       dass der Text von einer KI stammt und vor dem Senden zu prüfen ist.
     body: >-
       Eine Schaltfläche in der Notiz-Werkzeugleiste entwirft die Antwort aus der
-      Wissensdatenbank des Projekts — als normale Antwort, als
+      Wissensbasis des Projekts — als normale Antwort, als
       Schritt-für-Schritt-Anleitung, kurz und knapp oder als höfliche Nachfrage
       nach den fehlenden Angaben. Der Entwurf nennt die gelösten Tickets, auf
       denen er beruht, und ohne Treffer über der Relevanzschwelle verweigert er,
       statt zu raten. Wer einen unbearbeiteten Entwurf senden will, wird vorher
       gefragt. Ein optionaler Cross-Encoder sortiert die Treffer der
-      Wissensdatenbank vorher neu. Standardmäßig aus, wie jede KI-Funktion hier.
+      Wissensbasis vorher neu. Standardmäßig aus, wie jede KI-Funktion hier.
 
   - kicker: Anhänge
     title: Das Signaturlogo einmal sperren, nicht auf jedem Ticket löschen
@@ -158,7 +163,7 @@ features:
       wahlweise mit gleich versendeter erster Mail.
 
   - kicker: Optional
-    title: KI-Zusammenfassungen und Wissensdatenbank, standardmäßig aus
+    title: KI-Zusammenfassungen und Wissensbasis, standardmäßig aus
     shot: 02-ai-dashboard
     caption: >-
       KI-Statistik: Anzahl Anfragen, Token-Verbrauch, Erfolgsquote und
@@ -168,7 +173,7 @@ features:
       Ein schwer lesbarer weitergeleiteter Verlauf lässt sich von OpenAI,
       Anthropic oder jedem selbst betriebenen OpenAI-kompatiblen Endpunkt zu
       einer privaten internen Notiz zusammenfassen. Gelöste Tickets können zu
-      einer Wissensdatenbank je Projekt destilliert werden — Qdrant oder pgvector
+      einer Wissensbasis je Projekt destilliert werden — Qdrant oder pgvector
       — aus der neue Mails Lösungsvorschläge beziehen, streng getrennt, sodass
       ein Projekt nie die Einträge eines anderen sieht. Eine separate
       Vollständigkeitsprüfung fragt beim Kunden nach den Angaben, die ein
@@ -176,12 +181,42 @@ features:
       deaktiviert ausgeliefert, alles läuft in Hintergrundjobs, und die KI-Pfade
       scheitern sicher.
 
+  - kicker: Wissensbasis
+    title: Korrigieren, was die Wissensbasis gelernt hat
+    body: >-
+      Ein extrahiertes Paar aus Problem und Lösung ist nur so gut wie das
+      Ticket, aus dem es stammt — und den Text im Vektorspeicher zu korrigieren
+      hilft nicht, der Vektor bleibt der aus den alten Worten berechnete. Ein
+      Reiter **Wissensbasis** je Projekt listet die Einträge mit Statusfilter
+      und Volltextsuche; wird ein freigegebener Eintrag bearbeitet, wird er
+      sofort neu eingebettet. Einträge lassen sich freigeben, ablehnen, von Hand
+      zu einem Ticket anlegen oder löschen, und der Index des Projekts lässt
+      sich im Hintergrund neu aufbauen, mit Qdrant wie mit pgvector. Das Urteil
+      eines Menschen bleibt stehen: Wird das Ticket wieder geöffnet und erneut
+      geschlossen, überschreibt das keinen korrigierten oder abgelehnten
+      Eintrag. Drei Berechtigungen trennen Lesen, Bearbeiten und Verwalten.
+
+  - kicker: Umstieg
+    title: Von RedmineUP kommen, ohne die Historie zu verlieren
+    body: >-
+      Liegen die Tabellen von RedmineUPs `redmine_contacts` und
+      `redmine_contacts_helpdesk` noch in der Datenbank, bieten die
+      Plugin-Einstellungen an, die Kontakte samt Kundenzuordnung alter Tickets
+      zu importieren und die Original-Mails vom RedmineUP-eigenen Ticket an das
+      Redmine-Ticket umzuhängen, wo dieses Plugin sie anzeigt. Beides geht je
+      Projekt — die Auswahlseite zeigt vorher, wie viele Kontakte oder Mails
+      jeweils betroffen sind — und läuft als Hintergrundjob mit Fortschrittsseite,
+      denn ein echter Datenbestand dauert länger, als jeder Browser wartet. Für
+      ein Projekt, das noch mit dem RedmineUP-Helpdesk arbeitet, holt **An
+      RedmineUP zurückgeben** seine Mails wieder zurück.
+
 why:
   - "**Verträgt sich mit dem, was schon läuft.** Zwei Kern-Helper werden über die ursprüngliche Methode erweitert statt über `prepend`/`super` — genau damit das Plugin neben älteren Plugins bestehen kann, die dieselben Helper per `alias_method_chain` erweitern."
   - "**Die Zuordnung von Antworten wird nicht neu erfunden.** Das Threading macht Redmines `MailHandler`, es verhält sich also wie der Rest Ihres Redmine ohnehin."
   - "**Nichts wird stillschweigend erneut verarbeitet.** Verarbeitete Mail wandert in einen Zielordner, abgewiesene in „übersprungen“, Fehler in „fehlgeschlagen“. Eine kaputte Nachricht bricht niemals den ganzen Abruf ab."
   - "**Zugangsdaten werden verschlüsselt abgelegt** und sind über die REST-API nur schreibbar — ein Client Secret lässt sich setzen, aber nie wieder auslesen."
   - "**Kein eigener Scheduler.** Der Abruf ist ein Knopf oder ein per API-Schlüssel gesicherter Endpunkt, auf den Sie Cron oder einen Kubernetes-CronJob richten. Ihre Zeitsteuerung bleibt Ihre."
+  - "**Upgrades, ohne eine Mail mittendrin abzuschneiden.** Ein Wartungsmodus — per Schalter oder mit einem API-Aufruf aus Ihrem Upgrade-Skript — pausiert jeden Abruf, und ein bereits laufender Abruf hört vor der nächsten Nachricht auf. Ein Status-Endpunkt meldet `safe_to_stop`, sobald kein Pod im Cluster mehr in einem Abruf steckt; nicht verarbeitete Mail wartet einfach im Postfach."
   - "**Vollständige REST-API**, JSON und XML, nach Redmines eigenen Konventionen und begrenzt durch die Berechtigungen, die Sie ohnehin vergeben haben."
 
 install:
@@ -207,5 +242,5 @@ Plugins sind datenbankunabhängig.
 `base64` ist als Plugin-Gem deklariert — es ist seit Ruby 4.0, auf dem Redmine 7
 läuft, kein Default-Gem mehr. `pdf-reader` ist optional und wird nur benutzt, um
 Text aus PDF-Anhängen für KI-Zusammenfassungen zu ziehen; ohne das Gem werden
-solche Anhänge schlicht übersprungen. Das pgvector-Backend der Wissensdatenbank
+solche Anhänge schlicht übersprungen. Das pgvector-Backend der Wissensbasis
 braucht `pg` in Ihrem Deployment, das voreingestellte Qdrant-Backend nicht.

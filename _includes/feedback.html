@@ -1,0 +1,36 @@
+{%- comment -%}
+  Call for testers and feedback. With include.plugin (a _data/plugins.yml
+  entry) it links straight to that plugin's issue forms; without it (home
+  page) it offers the forms of all four plugins.
+  Params: t (i18n strings), plugin (optional), plugins (optional, home).
+{%- endcomment -%}
+{%- assign t = include.t -%}
+<section class="section section--tight" aria-labelledby="feedback-heading">
+  <div class="shell">
+    <div class="testers">
+      <p class="feature__kicker">{{ t.feedback_kicker }}</p>
+      <h2 id="feedback-heading">{{ t.feedback_heading }}</h2>
+      {{ t.feedback_body | markdownify }}
+      {{ t.feedback_proof | markdownify }}
+      {%- if include.plugin %}
+      {%- assign repo = include.plugin.repo %}
+      <div class="btn-row">
+        <a class="btn btn--primary" href="https://github.com/{{ repo }}/issues/new?template=bug_report.yml">{{ t.feedback_bug }}</a>
+        <a class="btn btn--ghost" href="https://github.com/{{ repo }}/issues/new?template=feature_request.yml">{{ t.feedback_idea }}</a>
+      </div>
+      {%- else %}
+      <p class="testers__pick">{{ t.feedback_pick }}</p>
+      <ul class="testers__plugins">
+        {%- for p in include.plugins %}
+        <li>
+          <strong>{{ p.name | remove: 'expert ' }}</strong>
+          <a href="https://github.com/{{ p.repo }}/issues/new?template=bug_report.yml">{{ t.feedback_bug }}</a>
+          <a href="https://github.com/{{ p.repo }}/issues/new?template=feature_request.yml">{{ t.feedback_idea }}</a>
+        </li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+      <div class="testers__note">{{ t.feedback_how | markdownify }}</div>
+    </div>
+  </div>
+</section>

@@ -72,24 +72,39 @@ features:
       greift allein an der Form der Anhang-URLs an, nicht an einer Liste von
       Controllern, an die wir zufällig gedacht haben.
 
+  - kicker: Eingebettete Bilder
+    title: Lange Tickets bleiben lesbar
+    body: >-
+      Ein Screenshot in voller Größe, eingefügt in ein Ticket, einen Kommentar
+      oder eine Wiki-Seite, kann alles Folgende aus dem Bild schieben. Eine
+      optionale maximale Breite und/oder Höhe für eingebettete Anhang-Bilder
+      hält sie im Rahmen; ein Klick öffnet das Bild weiterhin in voller Größe in
+      der Lightbox. Die Grenze wird global in den Plugin-Einstellungen gesetzt
+      oder je Projekt im Reiter *Bildvorschau* der Projektkonfiguration
+      überschrieben, den alle erreichen, die das Projekt bearbeiten dürfen. Leer
+      heißt keine Begrenzung und ist die Voreinstellung — ein Update ändert also
+      nichts, bis Sie eine setzen. Externe Bilder bleiben unverändert, weil die
+      Lightbox sie ohnehin nicht öffnen kann.
+
 why:
   - "**Keine Abhängigkeiten.** Reines JavaScript und ein natives `<dialog>` — `Esc`, Fokusführung und Hintergrund kommen damit vom Browser. Kein jQuery, kein Fancybox, kein Build-Schritt, keine CDN-Anfrage."
   - "**Keine überschriebene View und kein Controller-Patch.** Die Erkennung greift an URL-Formen an, die über viele Redmine-Hauptversionen stabil geblieben sind, und nicht am Markup, an CSS-Klassen oder an Icon-Fonts des Kerns — genau daran ist der Vorgänger zerbrochen."
-  - "**Keine Konfiguration.** Keine Migrationen, keine Einstellungen, keine Berechtigungen."
+  - "**Nichts zu konfigurieren, solange Sie nicht wollen.** Kein Modul zu aktivieren, keine Berechtigungen zu vergeben. Die einzige Einstellung ist die optionale Größengrenze für eingebettete Bilder, und die ist anfangs leer."
   - "**Es degradiert zu nichts.** In einem Browser ohne `<dialog>` bleibt das Plugin untätig, und Anhang-Links verhalten sich wie gewohnt."
   - "**Der eine Server-Endpunkt ist bewusst eng.** Er liefert eine Datei nur dann eingebettet aus, wenn ihre Endung auf einer festen Liste steht, sendet `X-Content-Type-Options: nosniff` mit einem Typ aus eben dieser Liste statt aus den Metadaten des Uploads, und prüft Redmines `Attachment#visible?` — er gewährt also nichts, was der normale Download-Weg nicht auch gewähren würde."
 
 install:
   step1: "Release-Archiv herunterladen:"
   step2: "In das Verzeichnis `plugins/` Ihres Redmine entpacken:"
-  step3: ""
-  step4: "Redmine neu starten. Mehr ist nicht zu tun — kein Modul zu aktivieren, keine Berechtigung zu vergeben, keine Einstellung zu setzen."
+  step3: "Migration ausführen:"
+  step4: "Redmine neu starten. Die Lightbox arbeitet sofort — kein Modul zu aktivieren, keine Berechtigung zu vergeben. Eine Größengrenze für eingebettete Bilder ist optional, unter *Administration → Plugins → Konfigurieren*."
   note: >-
-    Keine Migrationen, also auch kein Migrationsschritt und nichts
-    zurückzurollen. Wenn Sie `redmine_x_lightbox2` oder `redmine_lightbox2`
+    Die eine Migration legt nur die Tabelle für projektbezogene Bildgrößen an;
+    die Lightbox selbst speichert nichts. Wenn Sie `redmine_x_lightbox2` oder `redmine_lightbox2`
     ablösen, entfernen Sie das alte Plugin zuerst — zwei Lightboxen auf einer
     Seite greifen beide nach demselben Klick.
 ---
 
-Keine Gems, keine Migrationen, keine Einstellungen, keine Berechtigungen. Läuft
-auf jeder Datenbank, weil es keine anfasst.
+Keine Gems, keine Berechtigungen, eine optionale Einstellung und eine kleine
+Tabelle für die projektbezogene Bildgröße. Läuft auf MariaDB, MySQL und
+PostgreSQL.

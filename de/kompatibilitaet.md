@@ -44,8 +44,8 @@ betreiben, sind die anderen drei Plugins unproblematisch.
 Keines dieser Plugins legt sich auf einen Redmine-Patchstand fest. Beim Wechsel
 zwischen den unterstützten Hauptversionen ersetzen Sie das Plugin-Verzeichnis
 durch das aktuelle Release und führen `rake redmine:plugins:migrate` für die
-Plugins mit Migrationen aus (Helpdesk und Agile immer, Metrics einmalig,
-Lightbox nie). Die Release-Notes weisen auf jede Migration hin, die Beachtung
+Plugins mit Migrationen aus (Helpdesk und Agile immer, Metrics und Lightbox
+einmalig). Die Release-Notes weisen auf jede Migration hin, die Beachtung
 braucht.
 
 ## Mehrere gleichzeitig installieren
