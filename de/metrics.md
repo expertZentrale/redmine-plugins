@@ -94,7 +94,7 @@ features:
       redmine_notifications_sent_total{project="customer-support"} 412
       redmine_helpdesk_mails_total{project="customer-support",direction="in"} 148
       redmine_helpdesk_mails_total{project="customer-support",direction="out"} 131
-      redmine_info{redmine_version="7.0.0.stable",plugin_version="1.1.1"} 1
+      redmine_info{redmine_version="7.0.0.stable",plugin_version="1.2.0"} 1
       ```
 
       Die Helpdesk-Zeilen erscheinen nur, wenn expert Helpdesk installiert ist;
@@ -111,7 +111,7 @@ features:
     body: |-
       JSON importieren, Prometheus-Datenquelle auswählen, fertig. Zeilen für
       *Gerade jetzt*, *Benutzer, Projekte und Tickets*, *Mail* und
-      *Scrape-Gesundheit*, dazu zwei Textpanels, die erklären, wie das Dashboard
+      *Scrape-Gesundheit*, dazu ein Textpanel, das erklärt, wie das Dashboard
       zu lesen ist. Die Kubernetes-Falle ist eingebaut: Jeder Pod meldet
       dieselben datenbankweiten Zahlen, deshalb aggregiert das Dashboard mit
       `max` statt mit `sum` — und verknüpft `up` mit einem 24-Stunden-Rückblick,

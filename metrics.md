@@ -91,7 +91,7 @@ features:
       redmine_notifications_sent_total{project="customer-support"} 412
       redmine_helpdesk_mails_total{project="customer-support",direction="in"} 148
       redmine_helpdesk_mails_total{project="customer-support",direction="out"} 131
-      redmine_info{redmine_version="7.0.0.stable",plugin_version="1.1.1"} 1
+      redmine_info{redmine_version="7.0.0.stable",plugin_version="1.2.0"} 1
       ```
 
       The helpdesk lines appear only when expert Helpdesk is installed; neither
@@ -106,8 +106,8 @@ features:
       customer versus notification mail per hour. Panel titles are English.
     body: |-
       Import the JSON, pick your Prometheus datasource, done. Rows for *Right
-      now*, *Users, projects and issues*, *Mail* and *Scrape health*, plus two
-      text panels explaining how to read it. The Kubernetes trap is baked in:
+      now*, *Users, projects and issues*, *Mail* and *Scrape health*, plus a
+      text panel explaining how to read it. The Kubernetes trap is baked in:
       every pod reports the same database-wide numbers, so the dashboard
       aggregates with `max` rather than `sum`, and joins `up` against a 24-hour
       lookback so a dead target shows as 0 instead of going stale.

@@ -32,7 +32,11 @@ features:
       hervorgehoben, weil dort fünf Karten gegen eine Grenze von vier stehen.
     body: >-
       Eine Karte per Drag-and-drop in eine andere Spalte zu ziehen ändert ihren
-      Status. Die Spalten kommen aus den Status, die Sie ohnehin haben,
+      Status. Sobald Sie sie aufnehmen, zeigt jede Spalte, ob Ihr Workflow diese
+      Karte hineinlässt — grün, wohin sie darf, schraffiert, wohin nicht —,
+      ermittelt mit derselben Prüfung, mit der der Server die Bewegung
+      durchsetzt; eine gesperrte Spalte nimmt die Karte gar nicht erst an. Die
+      Spalten kommen aus den Status, die Sie ohnehin haben,
       wahlweise mit WIP-Grenzen, die eine überladene Spalte markieren, eine
       Bewegung aber nie blockieren. Status mit gemeinsamem `Präfix:` rücken unter
       eine gemeinsame Überschrift. Die Karten zeigen, was Sie auswählen —
@@ -41,16 +45,18 @@ features:
       Feldern.
 
   - kicker: Swimlanes
-    title: Eine Bahn je Person — oder je beliebigem Feld
+    title: Eine Bahn je Person, Tracker oder Version
     shot: 02-board-swimlanes
     caption: >-
       Dasselbe Board, in Swimlanes nach Bearbeiter gruppiert: ein beschriftetes
       Band je Teammitglied plus ein Band für nicht zugewiesene Tickets, jedes über
       alle fünf Statusspalten.
     body: >-
-      Jedes Feld, nach dem die Query gruppieren kann, wird zu einer waagerechten
-      Bahn — Bearbeiter, Tracker, Priorität, Kategorie — jeweils mit eigener
-      Ticketzahl und Story-Point-Summe. Boards lassen sich privat speichern oder
+      Projekt, Tracker, Status, Priorität, Autor, Bearbeiter, Kategorie oder
+      Zielversion werden zu einer waagerechten Bahn, jeweils mit eigener
+      Ticketzahl und Story-Point-Summe. Das sind die Felder, nach denen ein Team
+      seine Arbeit tatsächlich aufteilt; Fortschritt, Datumsfelder und das
+      Privat-Kennzeichen werden nicht angeboten. Boards lassen sich privat speichern oder
       mit dem Projekt teilen, und das Board eines Oberprojekts trägt die Tickets
       seiner Unterprojekte mit.
 
@@ -94,11 +100,16 @@ features:
     body: >-
       Name, Beschreibung, Start- und Enddatum sowie ein Lebenszyklus offen →
       aktiv → abgeschlossen: Einen Sprint zu aktivieren beendet den vorherigen,
-      und ein Sprint lässt sich nicht abschließen, solange er noch offene Tickets
-      enthält. Die Freigabe funktioniert wie bei Redmine-Versionen, von „nicht
-      geteilt“ bis zum gesamten Projektbaum. Einen Sprint zu löschen hebt die
-      Zuordnung seiner Tickets auf — gelöscht wird nie. Redmines eigene Versionen
-      bleiben für die Releaseplanung daneben nutzbar.
+      ein Sprint lässt sich nicht abschließen, solange er noch offene Tickets
+      enthält, und ein abgeschlossener Sprint nimmt keine neuen mehr auf — sein
+      Burndown und seine Velocity bleiben, wie sie waren. Die Freigabe
+      funktioniert wie bei Redmine-Versionen, mit denselben Regeln dafür, wer wie
+      weit teilen darf: „Mit Projektbaum“ braucht jemanden, der im Hauptprojekt
+      Sprints verwaltet, „Mit allen Projekten“ einen Administrator. Einen Sprint
+      zu löschen hebt die Zuordnung seiner Tickets auf — gelöscht wird nie —, und
+      ein geteilter Sprint, in den andere Projekte noch planen, lässt sich gar
+      nicht löschen. Redmines eigene Versionen bleiben für die Releaseplanung
+      daneben nutzbar.
 
   - kicker: Sprint-Boards
     title: Ein Board, das dem laufenden Sprint folgt
@@ -149,14 +160,15 @@ why:
   - "**Die Reihenfolge am Board berechnet der Server** als gebrochener Rang. Eine Bewegung überträgt nur die gezogene Karte und ihre beiden Nachbarn und schreibt eine Zeile. Wird stattdessen im Browser eine ganze Spalte neu durchnummeriert, zerfällt die Reihenfolge bei gleichzeitigen Bewegungen — und Karten, die außerhalb der Seite liegen, werden stillschweigend umsortiert."
   - "**Der Diagrammverlauf entsteht in einem Durchgang** über eine einzige Journal-Abfrage und wird gecacht — nicht dadurch, dass die Journale jedes Tickets einmal pro Datumsschritt erneut durchsucht werden."
   - "**Kein Inline-JavaScript.** Die Views liefern nur Markup, die Daten erreichen den Browser über eine JSON-Insel — das Board funktioniert deshalb unter einer Content-Security-Policy mit `script-src 'self'`."
-  - "**Abgelehnte Übergänge erklären sich.** Verbietet Ihr Workflow eine Bewegung, nennt die Meldung Tracker und beide Status, listet die Übergänge auf, die *erlaubt* sind, und bietet Administratoren einen direkten Link zum Workflow dieses Trackers."
+  - "**Workflow-Grenzen zeigen sich vor dem Ablegen, Ablehnungen erklären sich.** Gesperrte Spalten sind schon beim Ziehen markiert. Was der Workflow nicht im Voraus wissen kann — etwa ein Feld, das der neue Status verlangt —, wird nach dem Ablegen abgelehnt; die Meldung nennt Tracker und beide Status, listet die Übergänge auf, die *erlaubt* sind, und bietet Administratoren einen direkten Link zum Workflow dieses Trackers."
+  - "**Agile-Rechte sind Redmines Rechte.** Eine Bewegung, die den Status ändert, braucht dieselbe Berechtigung wie im Ticketformular, Story-Point-Summen zählen nur Tickets, die der Leser sehen darf, und ein globales Board, Diagramm oder Backlog zu veröffentlichen bleibt Administratoren vorbehalten — wie bei Queries im Kern."
   - "**Die REST-API schreibt, nicht nur liest** — Story Points und Sprintzuordnung sind beide schreibbar, und für Sprints gibt es vollständiges CRUD."
 
 install:
   step1: "Release-Archiv herunterladen:"
   step2: "In das Verzeichnis `plugins/` Ihres Redmine entpacken:"
   step3: "Migrationen ausführen:"
-  step4: "Redmine neu starten, dann das Modul **expert Agile** in einem Projekt aktivieren. Der Backlog-Planer ist ein zweites Modul, **expert Agile Backlog**, und lässt sich getrennt vergeben."
+  step4: "Redmine neu starten, dann das Modul **expert Agile** in einem Projekt aktivieren. Der Backlog-Planer ist ein zweites Modul, **expert Agile Backlog**, und lässt sich getrennt vergeben; seine Berechtigung *Backlog verwalten* ist auch die, mit der jemand den Sprint eines Tickets setzen darf."
   note: >-
     Das Plugin lässt sich neben einem anderen Agile-Plugin installieren — jede
     unserer Klassen, Tabellen und Routen trägt ein Präfix —, aber **zwei
