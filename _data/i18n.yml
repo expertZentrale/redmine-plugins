@@ -54,6 +54,26 @@ en:
   theme_auto: Auto
   theme_light: Light
   theme_dark: Dark
+  feedback_kicker: Testers wanted
+  feedback_heading: Try it, break it, tell us
+  feedback_body: >-
+    These plugins are young and move quickly. The suites run on every Redmine
+    from 5.1 to 7.0, but our own installation is only one setup — we would
+    like to hear from people who run them somewhere else: another mail server,
+    another theme, next to other plugins, or with a workflow we never thought
+    of. Something broken, something missing, something that
+    works but feels wrong: all of it helps.
+  feedback_proof: >-
+    Suggestions are read. [Showing who else the first mail went to](https://github.com/expertZentrale/redmine_expert_helpdesk/issues/43)
+    went from issue to release in a day, after the person who asked picked
+    one of six mockups.
+  feedback_how: >-
+    The bug form asks for the plugin version and your environment; pasting the
+    table from Administration → Information covers the rest. To hear about
+    new versions, watch the repository on GitHub for releases.
+  feedback_bug: Report a bug
+  feedback_idea: Suggest a feature
+  feedback_pick: "Pick a plugin:"
 
 de:
   locale: de
@@ -108,3 +128,25 @@ de:
   theme_auto: Automatisch
   theme_light: Hell
   theme_dark: Dunkel
+  feedback_kicker: Tester gesucht
+  feedback_heading: Ausprobieren, kaputt machen, Bescheid sagen
+  feedback_body: >-
+    Diese Plugins sind jung und entwickeln sich schnell. Die Tests laufen auf
+    jedem Redmine von 5.1 bis 7.0, aber unsere eigene Installation ist nur ein
+    Setup — wir freuen uns über Rückmeldungen von allen, die sie anderswo
+    betreiben: mit einem anderen Mailserver, einem anderen Theme, neben
+    anderen Plugins oder mit einem Arbeitsablauf, an den wir nie gedacht
+    haben. Etwas geht kaputt, etwas fehlt, etwas funktioniert, fühlt sich aber
+    falsch an: all das hilft.
+  feedback_proof: >-
+    Vorschläge werden gelesen. [Anzeigen, an wen die Erst-Mail noch ging](https://github.com/expertZentrale/redmine_expert_helpdesk/issues/43)
+    kam innerhalb eines Tages vom Issue bis zum Release — nachdem die Person,
+    die danach gefragt hatte, einen von sechs Entwürfen ausgewählt hatte.
+  feedback_how: >-
+    Das Fehlerformular fragt nach Plugin-Version und Umgebung; die Tabelle aus
+    Administration → Informationen deckt den Rest ab. Wer von
+    neuen Versionen erfahren möchte, beobachtet das Repository auf GitHub für
+    Releases.
+  feedback_bug: Fehler melden
+  feedback_idea: Funktion vorschlagen
+  feedback_pick: "Plugin auswählen:"

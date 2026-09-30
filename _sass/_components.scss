@@ -513,3 +513,48 @@ td.no  { color: var(--ink-faint); }
   a { font-weight: 700; text-decoration: none; }
   time { color: var(--ink-faint); font-size: .84rem; white-space: nowrap; }
 }
+
+/* ---- call for testers / feedback ---- */
+
+.testers {
+  position: relative;
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--brand);
+  border-radius: var(--radius-lg);
+  background: var(--brand-wash);
+
+  h2 { margin-top: .2rem; }
+  p { color: var(--ink-soft); }
+}
+.testers__pick {
+  margin: 1.4rem 0 .5rem;
+  font-weight: 700;
+  color: var(--ink) !important;
+}
+.testers__plugins {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: .75rem;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+
+  li {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    padding: .8rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg);
+  }
+  strong { color: var(--ink); }
+  a { font-weight: 700; }
+}
+.testers__note {
+  margin-top: 1.3rem;
+  font-size: .9rem;
+
+  p { color: var(--ink-faint); margin: 0; }
+}
