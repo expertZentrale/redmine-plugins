@@ -11,7 +11,6 @@
       <p class="feature__kicker">{{ t.feedback_kicker }}</p>
       <h2 id="feedback-heading">{{ t.feedback_heading }}</h2>
       {{ t.feedback_body | markdownify }}
-      {{ t.feedback_proof | markdownify }}
       {%- if include.plugin %}
       {%- assign repo = include.plugin.repo %}
       <div class="btn-row">

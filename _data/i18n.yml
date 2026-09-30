@@ -63,10 +63,6 @@ en:
     another theme, next to other plugins, or with a workflow we never thought
     of. Something broken, something missing, something that
     works but feels wrong: all of it helps.
-  feedback_proof: >-
-    Suggestions are read. [Showing who else the first mail went to](https://github.com/expertZentrale/redmine_expert_helpdesk/issues/43)
-    went from issue to release in a day, after the person who asked picked
-    one of six mockups.
   feedback_how: >-
     The bug form asks for the plugin version and your environment; pasting the
     table from Administration → Information covers the rest. To hear about
@@ -138,10 +134,6 @@ de:
     anderen Plugins oder mit einem Arbeitsablauf, an den wir nie gedacht
     haben. Etwas geht kaputt, etwas fehlt, etwas funktioniert, fühlt sich aber
     falsch an: all das hilft.
-  feedback_proof: >-
-    Vorschläge werden gelesen. [Anzeigen, an wen die Erst-Mail noch ging](https://github.com/expertZentrale/redmine_expert_helpdesk/issues/43)
-    kam innerhalb eines Tages vom Issue bis zum Release — nachdem die Person,
-    die danach gefragt hatte, einen von sechs Entwürfen ausgewählt hatte.
   feedback_how: >-
     Das Fehlerformular fragt nach Plugin-Version und Umgebung; die Tabelle aus
     Administration → Informationen deckt den Rest ab. Wer von
