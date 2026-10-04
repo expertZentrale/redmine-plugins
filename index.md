@@ -59,3 +59,27 @@ worth knowing before you install anything:
   fails closed — a broken model response never mails your customer.
 - **English and German throughout.** Both locales, both READMEs, both
   changelogs, and screenshots in both languages.
+
+## Also from us: python-redmine-expert
+
+For scripts and integrations that talk to Redmine from Python, we maintain
+[python-redmine-expert](https://github.com/expertZentrale/python-redmine), a
+fork of Maxim Tepkeev's
+[Python-Redmine](https://github.com/maxtepkeev/python-redmine). Development of
+the original has stopped, so we picked it up; the vast majority of the code is
+still his. The import name stays `redminelib`, so it is a drop-in replacement
+for `python-redmine` 2.5.
+
+- **Up to Redmine 7.0.** The REST API additions of Redmine 6.0 to 7.0,
+  including OAuth2 access tokens, on Python 3.10 to 3.14 and PyPy3.
+- **The RedmineUP plugins, no Pro Edition needed.** CRM, Helpdesk, Agile,
+  Checklists and Questions. RedmineUP support used to be part of the paid Pro
+  Edition; we wrote it anew, following the Pro Edition's API where it had one,
+  so code written for it keeps working. The Pro Edition's own code is not part
+  of the fork.
+- **Our own plugins.** Resources for the REST APIs of expert Helpdesk and
+  expert Agile.
+- **The original's licence.** Apache 2.0. Install it from the
+  [GitHub releases](https://github.com/expertZentrale/python-redmine/releases);
+  the [documentation](https://expertzentrale.github.io/python-redmine/) covers
+  every resource.

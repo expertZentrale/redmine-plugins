@@ -63,3 +63,27 @@ uns dabei gesetzt haben, sollten Sie kennen, bevor Sie etwas installieren:
   Modellantwort schreibt niemals eine Mail an Ihren Kunden.
 - **Durchgängig deutsch und englisch.** Beide Sprachen im Plugin, in beiden
   READMEs, in beiden Changelogs — und Screenshots in beiden Sprachen.
+
+## Außerdem von uns: python-redmine-expert
+
+Für Skripte und Integrationen, die aus Python mit Redmine sprechen, pflegen wir
+[python-redmine-expert](https://github.com/expertZentrale/python-redmine), einen
+Fork von Maxim Tepkeevs
+[Python-Redmine](https://github.com/maxtepkeev/python-redmine). Das Original
+wird nicht mehr weiterentwickelt, deshalb haben wir es übernommen; der weitaus
+größte Teil des Codes stammt weiterhin von ihm. Der Importname bleibt
+`redminelib` — es ersetzt `python-redmine` 2.5 ohne Codeänderung.
+
+- **Bis Redmine 7.0.** Die REST-API-Erweiterungen von Redmine 6.0 bis 7.0,
+  einschließlich OAuth2-Zugriffstokens, auf Python 3.10 bis 3.14 und PyPy3.
+- **Die RedmineUP-Plugins, ohne Pro Edition.** CRM, Helpdesk, Agile, Checklists
+  und Questions. Die Unterstützung für RedmineUP war bisher Teil der
+  kostenpflichtigen Pro Edition; wir haben sie neu geschrieben und uns dabei an
+  die API der Pro Edition gehalten, wo es eine gab — Code, der dafür geschrieben
+  wurde, läuft weiter. Der Code der Pro Edition selbst ist nicht Teil des Forks.
+- **Unsere eigenen Plugins.** Ressourcen für die REST-APIs von expert Helpdesk
+  und expert Agile.
+- **Die Lizenz des Originals.** Apache 2.0. Installation über die
+  [GitHub-Releases](https://github.com/expertZentrale/python-redmine/releases);
+  die [Dokumentation](https://expertzentrale.github.io/python-redmine/) (englisch)
+  beschreibt jede Ressource.
