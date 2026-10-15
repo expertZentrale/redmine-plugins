@@ -325,7 +325,7 @@
       "shots": [
         {
           "file": "01-board",
-          "url": "/projects/screenshot-agile/expert_agile/board?query_id=8",
+          "url": "/projects/screenshot-agile/expert_agile/board?query_id={board}",
           "viewport": {
             "width": 1720,
             "height": 1000
@@ -340,7 +340,7 @@
         },
         {
           "file": "02-board-swimlanes",
-          "url": "/projects/screenshot-agile/expert_agile/board?query_id=9",
+          "url": "/projects/screenshot-agile/expert_agile/board?query_id={lanes}",
           "viewport": {
             "width": 1720,
             "height": 1000
@@ -382,21 +382,21 @@
         },
         {
           "file": "06-chart-burndown",
-          "url": "/projects/screenshot-agile/expert_agile/charts?query_id=11",
+          "url": "/projects/screenshot-agile/expert_agile/charts?query_id={burndown}",
           "clip": "#content",
           "settleMs": 1500,
           "note": "burndown of the active sprint"
         },
         {
           "file": "07-chart-velocity",
-          "url": "/projects/screenshot-agile/expert_agile/charts?query_id=12",
+          "url": "/projects/screenshot-agile/expert_agile/charts?query_id={velocity}",
           "clip": "#content",
           "settleMs": 1500,
           "note": "velocity"
         },
         {
           "file": "08-chart-cumulative-flow",
-          "url": "/projects/screenshot-agile/expert_agile/charts?query_id=13",
+          "url": "/projects/screenshot-agile/expert_agile/charts?query_id={flow}",
           "clip": "#content",
           "settleMs": 1500,
           "note": "cumulative flow"
@@ -426,7 +426,7 @@
         },
         {
           "file": "11-sprint-board",
-          "url": "/projects/screenshot-agile/expert_agile/board?query_id=8",
+          "url": "/projects/screenshot-agile/expert_agile/board?query_id={board}",
           "viewport": {
             "width": 1720,
             "height": 1000
@@ -447,6 +447,72 @@
           ],
           "clip": "#content",
           "note": "board options open on the Sprint selector: Active sprint follows whichever sprint is running"
+        },
+        {
+          "file": "12-board-epics",
+          "url": "/projects/screenshot-agile/expert_agile/board?query_id={epic_lanes}",
+          "viewport": {
+            "width": 1720,
+            "height": 1000
+          },
+          "clip": "#content",
+          "actions": [
+            {
+              "eval": "document.getElementById('main').classList.add('nosidebar');"
+            }
+          ],
+          "note": "sprint board with one swimlane per epic, each headed by the epic's progress; a story card counts its subtasks"
+        },
+        {
+          "file": "13-epics",
+          "url": "/projects/screenshot-agile/expert_agile/epics",
+          "viewport": {
+            "width": 1720,
+            "height": 1000
+          },
+          "clip": "#content",
+          "actions": [
+            {
+              "eval": "document.getElementById('main').classList.add('nosidebar');"
+            }
+          ],
+          "note": "Epics tab: epic -> story -> subtask tree with progress bars"
+        },
+        {
+          "file": "14-backlog-epics",
+          "url": "/projects/screenshot-agile/expert_agile/backlog?query_id={epic_planning}",
+          "viewport": {
+            "width": 1720,
+            "height": 1000
+          },
+          "clip": "#content",
+          "actions": [
+            {
+              "eval": "document.getElementById('main').classList.add('nosidebar');"
+            }
+          ],
+          "note": "backlog planner planning into epics: stories without an epic next to one lane per epic"
+        },
+        {
+          "file": "15-sprint-complete",
+          "url": "/projects/screenshot-agile/expert_agile_sprints/{sprint}/complete",
+          "clip": "#content",
+          "note": "Complete sprint: done/open summary and where the open issues go"
+        },
+        {
+          "file": "16-issue-list-sprint",
+          "url": "/projects/screenshot-agile/issues?set_filter=1&f[]=status_id&op[status_id]=o&f[]=tracker_id&op[tracker_id]=%3D&v[tracker_id][]={story_tracker}&f[]=expert_agile_sprint_id&op[expert_agile_sprint_id]=%3D&v[expert_agile_sprint_id][]=active&v[expert_agile_sprint_id][]={next_sprint}&c[]=tracker&c[]=subject&c[]=status&c[]=assigned_to&c[]=expert_agile_sprint&c[]=story_points&group_by=expert_agile_sprint&sort=expert_agile_sprint,id&per_page=25",
+          "viewport": {
+            "width": 1720,
+            "height": 1000
+          },
+          "clip": "#content",
+          "actions": [
+            {
+              "eval": "document.getElementById('main').classList.add('nosidebar');"
+            }
+          ],
+          "note": "core issue list, stories only, with the Sprint filter (active sprint + the next one), grouped by the Sprint column"
         }
       ]
     }

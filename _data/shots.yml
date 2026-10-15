@@ -2,23 +2,39 @@
 # Real dimensions of the 1x WebP files, so every <img> reserves the right box.
 agile:
   de:
-    01-board: {w: 1440, h: 1156}
-    02-board-swimlanes: {w: 1440, h: 1674}
-    03-backlog: {w: 1440, h: 839}
+    01-board: {w: 1440, h: 1325}
+    02-board-swimlanes: {w: 1440, h: 1737}
+    03-backlog: {w: 1440, h: 853}
     04-sprints: {w: 1440, h: 298}
-    05-story-points: {w: 1440, h: 438}
+    05-story-points: {w: 1440, h: 445}
     06-chart-burndown: {w: 1440, h: 700}
+    07-chart-velocity: {w: 1440, h: 700}
+    08-chart-cumulative-flow: {w: 1440, h: 699}
     09-card-colors: {w: 1440, h: 798}
-    11-sprint-board: {w: 1440, h: 1364}
+    10-settings: {w: 1440, h: 1932}
+    11-sprint-board: {w: 1440, h: 1528}
+    12-board-epics: {w: 1440, h: 1321}
+    13-epics: {w: 1440, h: 1018}
+    14-backlog-epics: {w: 1440, h: 818}
+    15-sprint-complete: {w: 1440, h: 1148}
+    16-issue-list-sprint: {w: 1440, h: 768}
   en:
-    01-board: {w: 1440, h: 1156}
-    02-board-swimlanes: {w: 1440, h: 1674}
-    03-backlog: {w: 1440, h: 839}
+    01-board: {w: 1440, h: 1325}
+    02-board-swimlanes: {w: 1440, h: 1737}
+    03-backlog: {w: 1440, h: 853}
     04-sprints: {w: 1440, h: 298}
-    05-story-points: {w: 1440, h: 440}
+    05-story-points: {w: 1440, h: 446}
     06-chart-burndown: {w: 1440, h: 700}
+    07-chart-velocity: {w: 1440, h: 700}
+    08-chart-cumulative-flow: {w: 1440, h: 699}
     09-card-colors: {w: 1440, h: 798}
-    11-sprint-board: {w: 1440, h: 1364}
+    10-settings: {w: 1440, h: 1879}
+    11-sprint-board: {w: 1440, h: 1528}
+    12-board-epics: {w: 1440, h: 1321}
+    13-epics: {w: 1440, h: 1018}
+    14-backlog-epics: {w: 1440, h: 818}
+    15-sprint-complete: {w: 1440, h: 1148}
+    16-issue-list-sprint: {w: 1440, h: 768}
 helpdesk:
   de:
     01-sla-dashboard: {w: 1440, h: 1501}

@@ -52,13 +52,47 @@ features:
       Band je Teammitglied plus ein Band für nicht zugewiesene Tickets, jedes über
       alle fünf Statusspalten.
     body: >-
-      Projekt, Tracker, Status, Priorität, Autor, Bearbeiter, Kategorie oder
-      Zielversion werden zu einer waagerechten Bahn, jeweils mit eigener
+      Projekt, Tracker, Status, Priorität, Autor, Bearbeiter, Kategorie,
+      Zielversion oder Epic werden zu einer waagerechten Bahn, jeweils mit eigener
       Ticketzahl und Story-Point-Summe. Das sind die Felder, nach denen ein Team
       seine Arbeit tatsächlich aufteilt; Fortschritt, Datumsfelder und das
       Privat-Kennzeichen werden nicht angeboten. Boards lassen sich privat speichern oder
       mit dem Projekt teilen, und das Board eines Oberprojekts trägt die Tickets
-      seiner Unterprojekte mit.
+      seiner Unterprojekte mit. Das globale Board, verlinkt im Anwendungsmenü,
+      trägt alle Projekte, die Sie sehen dürfen.
+
+  - kicker: Epics
+    title: Epic, Story, Unteraufgabe — auf Redmines eigenem Unteraufgaben-Baum
+    shot: 12-board-epics
+    caption: >-
+      Sprint-Board nach Epic gruppiert: eine Swimlane je Epic mit seinem
+      Fortschrittsbalken im Kopf und eine letzte Bahn für Tickets ohne Epic.
+      Eine Story in Arbeit zeigt „Erledigte Unteraufgaben: 1/3“, ihre
+      Unteraufgaben stehen in ihren eigenen Spalten.
+    body: >-
+      Sie wählen die Tracker, deren Tickets Epics sind, und ein Ticket gehört
+      zum nächsten Epic über ihm in Redmines Unteraufgaben-Baum — keine eigene
+      Tabelle, kein benutzerdefiniertes Feld; der Filter „Übergeordnetes
+      Ticket“, die REST-API, das Gantt-Diagramm und die Story-Point-Summen sehen
+      deshalb dasselbe. Karten tragen ihr Epic als farbiges Badge, eine
+      Unteraufgabe nennt ihre Story, und eine Story zählt ihre erledigten
+      Unteraufgaben. Nach Epic gruppiert bekommt jedes Epic eine Bahn mit seinem
+      Fortschritt im Kopf; eine Story in die Bahn eines anderen Epics zu ziehen
+      verschiebt sie dorthin.
+
+  - kicker: Epic-Übersicht
+    title: Jedes Epic, seine Stories und deren Unteraufgaben in einem Baum
+    shot: 13-epics
+    caption: >-
+      Reiter Epics: jedes Epic mit Status, Fortschrittsbalken und erledigten
+      Tickets und Story Points über einer Tabelle seiner Stories; die
+      Unteraufgaben einer Story stehen eingerückt darunter.
+    body: >-
+      Der Reiter Epics listet jedes offene Epic des Projekts mit dem, was
+      erledigt ist — Tickets und Story Points, als Balken und in Zahlen — und
+      seine Stories und Unteraufgaben als Baum mit Status, Bearbeiter und
+      Punkten. Derselbe Fortschritt steht auf der Ticketseite des Epics. Gezählt
+      werden nur Tickets, die der Leser sehen darf.
 
   - kicker: Farben
     title: Jede Farbe — nach Tracker, Status, Priorität oder Projekt
@@ -140,6 +174,53 @@ features:
       hat dasselbe Filter-Panel und dieselben Kartenfelder wie das Board,
       speichert benannte Backlogs und merkt sich, wo Sie zuletzt waren.
 
+  - kicker: Epic-Planung
+    title: Stories in Epics planen wie in Sprints
+    shot: 14-backlog-epics
+    caption: >-
+      Backlog-Planer im Reiter Epics: Stories ohne Epic links, daneben eine
+      Bahn je offenem Epic mit Ticketzahl, Story-Point-Summe und Fortschritt im
+      Kopf; jede Karte trägt ihr Epic-Badge.
+    body: >-
+      Ein dritter Reiter im Planer stellt die Stories ohne Epic neben eine Bahn
+      je offenem Epic. Eine Story in ein Epic zu ziehen macht sie zu dessen
+      Unteraufgabe — mit Journaleintrag und unter der Berechtigung,
+      Unteraufgaben zu verwalten —, und ihre eigenen Unteraufgaben gehen mit.
+
+  - kicker: Sprint-Abschluss
+    title: Einen Sprint in einem Schritt abschließen
+    shot: 15-sprint-complete
+    caption: >-
+      Seite Sprint abschließen: wie viele Tickets erledigt und noch offen sind
+      samt Story Points, die offenen Tickets als Liste und die Wahl zwischen
+      nächstem Sprint, Backlog oder einem neuen Sprint mit vorgeschlagenem Namen
+      und Datum, dazu „Ziel-Sprint zum aktiven Sprint machen“.
+    body: >-
+      **Sprint abschließen** zeigt, was erledigt und was noch offen ist, und
+      verschiebt die offenen Tickets in den nächsten Sprint, zurück ins Backlog
+      oder in einen neuen Sprint, der gleich mit hochgezähltem Namen und
+      anschließenden Daten angelegt wird. Der Sprint wird geschlossen, und das
+      Ziel kann zum aktiven Sprint werden — ein Board, das dem aktiven Sprint
+      folgt, stimmt dann sofort. Jedes Ticket wird wie im Planer verschoben,
+      unter denselben Berechtigungen und der eigenen Validierung des Tickets;
+      lässt sich ein einziges nicht verschieben, wird nichts geschrieben, und die
+      Seite sagt, welches und warum. Auch über die REST-API.
+
+  - kicker: Ticketliste
+    title: Die Ticketliste kennt den Sprint
+    shot: 16-issue-list-sprint
+    caption: >-
+      Redmines Ticketliste, gefiltert auf offene Stories im aktiven und im
+      nächsten Sprint, nach der Spalte Sprint in Sprint 24 und Sprint 25
+      gruppiert, mit einer Spalte Story Points.
+    body: >-
+      Redmines eigene Ticketliste bekommt einen Filter **Sprint** — ein oder
+      mehrere Sprints, **Aktiver Sprint**, bei jedem Aufruf neu aufgelöst,
+      irgendeiner oder keiner — und eine Spalte **Sprint**, die sortiert,
+      gruppiert und in den CSV-Export geht. Gespeicherte Listen wie „alles im
+      laufenden Sprint“, Sprint-Exporte und Sammelbearbeitungen der Tickets
+      eines Sprints gehen damit von selbst.
+
   - kicker: Diagramme
     title: Fünf Diagramme, aus dem was tatsächlich passiert ist
     shot: 06-chart-burndown
@@ -163,6 +244,7 @@ why:
   - "**Workflow-Grenzen zeigen sich vor dem Ablegen, Ablehnungen erklären sich.** Gesperrte Spalten sind schon beim Ziehen markiert. Was der Workflow nicht im Voraus wissen kann — etwa ein Feld, das der neue Status verlangt —, wird nach dem Ablegen abgelehnt; die Meldung nennt Tracker und beide Status, listet die Übergänge auf, die *erlaubt* sind, und bietet Administratoren einen direkten Link zum Workflow dieses Trackers."
   - "**Agile-Rechte sind Redmines Rechte.** Eine Bewegung, die den Status ändert, braucht dieselbe Berechtigung wie im Ticketformular, Story-Point-Summen zählen nur Tickets, die der Leser sehen darf, und ein globales Board, Diagramm oder Backlog zu veröffentlichen bleibt Administratoren vorbehalten — wie bei Queries im Kern."
   - "**Die REST-API schreibt, nicht nur liest** — Story Points und Sprintzuordnung sind beide schreibbar, und für Sprints gibt es vollständiges CRUD."
+  - "**Einen Sprint abzuschließen gelingt ganz oder gar nicht.** Die Tickets wandern und der Sprint schließt in einer Transaktion; ein Sprint bleibt nie halb verschoben zurück — ein einziges Ticket, das nicht verschoben werden darf, hält alles an und wird genannt."
 
 install:
   step1: "Release-Archiv herunterladen:"
