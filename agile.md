@@ -7,7 +7,7 @@ permalink: /agile/
 title: expert Agile
 description: >-
   Kanban and Scrum boards for Redmine built on Redmine's own query system, with
-  story points, first-class sprints, a backlog planner and burndown, burnup,
+  story points, epics, first-class sprints, a backlog planner and burndown, burnup,
   velocity, cumulative-flow and cycle-time charts. GPL-2.0.
 promise: >-
   A Kanban and Scrum board that *is* a Redmine query. Every filter, column,
@@ -43,11 +43,39 @@ features:
     caption: >-
       The same board grouped into swimlanes by assignee: one labelled band per team member plus a band for unassigned issues, each spanning all five status columns.
     body: >-
-      Project, tracker, status, priority, author, assignee, category or target
-      version becomes a horizontal lane, each with its own issue count and
+      Project, tracker, status, priority, author, assignee, category, target
+      version or epic becomes a horizontal lane, each with its own issue count and
       story-point total. Those are the fields a team actually splits its work
       by; percent done, dates and the private flag are not offered. Boards can be saved privately or shared with the
       project, and a parent project's board carries its subprojects' issues.
+      The global board, linked from the application menu, carries every project
+      you may see.
+
+  - kicker: Epics
+    title: Epic, story, subtask — on Redmine's own subtask tree
+    shot: 12-board-epics
+    caption: >-
+      Sprint board grouped by epic: one swimlane per epic, headed by its progress bar, and a last lane for issues without an epic. A story in progress shows "Subtasks done: 1/3", and its subtasks sit in their own columns.
+    body: >-
+      Pick the trackers whose issues are epics, and an issue belongs to the
+      nearest epic above it in Redmine's subtask tree — no extra table, no custom
+      field, so the parent filter, the REST API, the Gantt chart and the story
+      point roll-up all see the same thing. Cards carry their epic as a coloured
+      badge and a subtask names its story; a story counts its subtasks done.
+      Group the board by epic for one lane per epic, each headed by its
+      progress, and drop a story into another epic's lane to move it there.
+
+  - kicker: Epic overview
+    title: Every epic, its stories and their subtasks in one tree
+    shot: 13-epics
+    caption: >-
+      Epics tab: each epic with its status, a progress bar and the issues and story points done, above a table of its stories; a story's subtasks are indented beneath it.
+    body: >-
+      The Epics tab lists every open epic of the project with what is done —
+      issues and story points, as a bar and in numbers — and its stories and
+      subtasks as a tree, with status, assignee and points. The same progress
+      shows on the epic's own issue page. Only issues the reader may see are
+      counted.
 
   - kicker: Colours
     title: Any colour, by tracker, status, priority or project
@@ -115,6 +143,44 @@ features:
       filter panel and card fields as the board, saves named backlogs, and
       remembers where you were when you come back to it.
 
+  - kicker: Epic planning
+    title: Plan stories into epics the way you plan them into sprints
+    shot: 14-backlog-epics
+    caption: >-
+      Backlog planner on its Epics tab: stories without an epic on the left, one lane per open epic beside it, each headed by its issue count, story-point total and progress; every card carries its epic badge.
+    body: >-
+      A third tab in the planner puts the stories without an epic next to one
+      lane per open epic. Dragging a story into an epic makes it that epic's
+      subtask — journaled, under the permission to manage subtasks — and its own
+      subtasks go with it.
+
+  - kicker: Sprint review
+    title: Complete a sprint in one step
+    shot: 15-sprint-complete
+    caption: >-
+      Complete sprint page: how many issues are done and still open with their story points, the open issues listed, and the choice between the next sprint, the backlog or a new sprint with a suggested name and dates, plus "Make the target sprint the active one".
+    body: >-
+      **Complete sprint** shows what was done and what is still open, then
+      moves the open issues to the next sprint, back to the backlog, or into a
+      new sprint created on the spot with its name counted up and its dates
+      following on. It closes the sprint and can make the target the active
+      one, so a board following the active sprint is right straight away. Every
+      issue moves like a planner move, under the same permissions and the
+      issue's own validation; if a single one cannot move, nothing is written and
+      the page says which and why. Also over the REST API.
+
+  - kicker: Issue list
+    title: The issue list knows the sprint
+    shot: 16-issue-list-sprint
+    caption: >-
+      Redmine's issue list filtered to open stories in the active sprint and the next one, grouped by the Sprint column into Sprint 24 and Sprint 25, with a Story points column.
+    body: >-
+      Redmine's own issue list gains a **Sprint** filter — one or more sprints,
+      **Active sprint** resolved each time the list runs, any sprint or none —
+      and a **Sprint** column that sorts, groups and goes into the CSV export.
+      Saved lists such as "everything in the current sprint", sprint exports and
+      bulk edits of a sprint's issues come with it.
+
   - kicker: Charts
     title: Five charts, from what actually happened
     shot: 06-chart-burndown
@@ -135,6 +201,7 @@ why:
   - "**Workflow limits show before the drop, and refusals say why.** Blocked columns are marked while you drag. What the workflow cannot know in advance — a field the new status requires, say — is refused after the drop with the tracker and both statuses named, the transitions that *are* open listed, and a link for admins straight to that tracker's workflow."
   - "**Agile rights are Redmine's rights.** A drag that changes a status needs the same permission the issue form needs for it, story-point totals count only issues the reader may see, and publishing a global board, chart or backlog is reserved for administrators, as it is for queries in core."
   - "**The REST API writes, not just reads** — story points and sprint assignment are both writable, and sprints have full CRUD."
+  - "**Completing a sprint is all or nothing.** The issues move and the sprint closes in one transaction, so a sprint is never left half-moved — one issue that may not move stops the lot, and is named."
 
 install:
   step1: "Download the release archive:"
