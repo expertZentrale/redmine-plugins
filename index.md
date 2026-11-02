@@ -57,8 +57,9 @@ worth knowing before you install anything:
 - **Optional means off.** The AI features, the knowledge base and the phishing
   check all ship disabled. Turning one on is a deliberate act, and each one
   fails closed — a broken model response never mails your customer.
-- **English and German throughout.** Both locales, both READMEs, both
-  changelogs, and screenshots in both languages.
+- **Seven languages in the UI, two in the docs.** Every plugin speaks English,
+  German, Spanish, French, Italian and Portuguese (Portugal and Brazil); READMEs,
+  changelogs and screenshots come in English and German.
 
 ## Also from us: python-redmine-expert
 
