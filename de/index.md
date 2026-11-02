@@ -61,8 +61,10 @@ uns dabei gesetzt haben, sollten Sie kennen, bevor Sie etwas installieren:
   Phishing-Prüfung sind im Auslieferungszustand deaktiviert. Sie einzuschalten
   ist eine bewusste Entscheidung — und jede davon scheitert sicher: eine kaputte
   Modellantwort schreibt niemals eine Mail an Ihren Kunden.
-- **Durchgängig deutsch und englisch.** Beide Sprachen im Plugin, in beiden
-  READMEs, in beiden Changelogs — und Screenshots in beiden Sprachen.
+- **Sieben Sprachen in der Oberfläche, zwei in der Doku.** Jedes Plugin spricht
+  Deutsch, Englisch, Spanisch, Französisch, Italienisch und Portugiesisch
+  (Portugal und Brasilien); READMEs, Changelogs und Screenshots gibt es auf
+  Deutsch und Englisch.
 
 ## Außerdem von uns: python-redmine-expert
 
